@@ -1,19 +1,20 @@
  <div class="container">
-      <form action="tickets.html">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <h2>Login</h2>
           <div class="txt">
               Username:
           </div>
           <div>
-              <input class="input" type="text" placeholder="Username" maxlength="20">
+              <input class="input" type="text" formControlName="username" placeholder="Username" >
           </div>
           <div class="txt">
               Password:
           </div>
           <div>
-              <input class="input" type="password" placeholder="Password">
+              <input class="input" type="password" formControlName="password" placeholder="Password">
           </div>
           <a class="txt" routerLink="/register">Register here</a>
-          <input type="submit" class="btn" value="Submit">
+          <input [disabled]="!loginForm.valid" type="submit" class="btn" value="Submit">
+          <div *ngIf="error" class="error-feedback">{{error}}</div>
       </form>
   </div>

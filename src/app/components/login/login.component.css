@@ -1,0 +1,9 @@
+.error-feedback{
+    text-align: center;
+    color: crimson;
+}
+.invalid-feedback{
+    color: crimson;
+    font-size: 1rem;
+    margin-left: 1rem;
+}
