@@ -11,6 +11,10 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  register(user: User) {
+    return this.http.post(`${environment.baseUrl}/api/auth/register`, user)
+  }
+  
   login(username: string, password: string){
     return this.http.post<any>(`${environment.baseUrl}/api/auth/login`, {username, password})
     .pipe(map
