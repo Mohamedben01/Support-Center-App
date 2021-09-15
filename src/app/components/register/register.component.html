@@ -1,68 +1,68 @@
 <div class="container">
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-          <h2>Register</h2>
-          <span class="column">
-              <div class="input-div ">
-                  <div class="txt">
-                      First Name
-                  </div>
-                  <div>
-                      <input formControlName="firstname" class="input" type="text" placeholder="First Name" maxlength="25">
-                  </div>
-              </div>
-              <div class="input-div others">
-                  <div class="txt">
-                      Last Name
-                  </div>
-                  <div>
-                      <input formControlName="lastname" class="input" type="text" placeholder="Last Name" maxlength="25">
-                  </div>
-              </div>
-              <div class="input-div others">
-                  <div class="txt">
-                      Email
-                  </div>
-                  <div>
-                      <input formControlName="email" class="input" type="text" placeholder="Email">
-                  </div>
-              </div>
-              <div class="input-div others">
-                  <div class="txt">
-                      Phone
-                  </div>
-                  <div>
-                      <input class="input" type="text" placeholder="Phone">
-                  </div>
-              </div>
-          </span>
-          <span class="column">
-              <div class="input-div first">
-                  <div class="txt">
-                      Username
-                  </div>
-                  <div>
-                      <input formControlName="username" class="input" type="text" placeholder="Username">
-                  </div>
-              </div>
-              <div class="input-div others">
-                  <div class="txt">
-                      Password
-                  </div>
-                  <div>
-                      <input formControlName="password" class="input" type="password" placeholder="Password">
-                  </div>
-              </div>
-              <div class="input-div others">
-                  <div class="txt">
-                      Confirm Password
-                  </div>
-                  <div>
-                      <input class="input" type="password" placeholder="Confirm Password">
-                  </div>
-              </div>
-              <div *ngIf="error" class="error-feedback">{{error}}</div>
-              <a class="areg" routerLink="/login">Login here</a>
-              <input  type="submit" class="btn btnreg" value="Submit">
-          </span>
-      </form>
-  </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <h2>Register</h2>
+        <span class="column">
+            <div class="input-div ">
+                <div class="txt">
+                    First Name
+                </div>
+                <div>
+                    <input formControlName="firstname" class="input" type="text" placeholder="First Name" maxlength="25">
+                </div>
+            </div>
+            <div class="input-div others">
+                <div class="txt">
+                    Last Name
+                </div>
+                <div>
+                    <input formControlName="lastname" class="input" type="text" placeholder="Last Name" maxlength="25">
+                </div>
+            </div>
+            <div class="input-div others">
+                <div class="txt">
+                    Email
+                </div>
+                <div>
+                    <input formControlName="email" class="input" type="text" placeholder="Email">
+                </div>
+            </div>
+            <div class="input-div others">
+                <div class="txt">
+                    Phone
+                </div>
+                <div>
+                    <input class="input" type="text" placeholder="Phone">
+                </div>
+            </div>
+        </span>
+        <span class="column">
+            <div class="input-div first">
+                <div class="txt">
+                    Username
+                </div>
+                <div>
+                    <input formControlName="username" class="input" type="text" placeholder="Username">
+                </div>
+            </div>
+            <div class="input-div others">
+                <div class="txt">
+                    Password
+                </div>
+                <div>
+                    <input formControlName="password" class="input" type="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="input-div others">
+                <div class="txt">
+                    Confirm Password
+                </div>
+                <div>
+                    <input class="input" type="password" placeholder="Confirm Password">
+                </div>
+            </div>
+            <a class="areg" routerLink="/login">Login here</a>
+            <input  type="submit" class="btn btnreg" value="Submit">
+        </span>
+    </form>
+    <div *ngIf="error" class="error-feedback">{{error}}</div>
+</div>
