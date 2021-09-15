@@ -1,1 +1,34 @@
-<p>product works!</p>
+ <div class="head">
+    <div>
+        <button *ngIf="user_role === 'Admin'" type="button" class="btn">
+            <i class="fas fa-plus"></i> 
+            Add New
+        </button>
+        <div class="input-div">
+           <div class="icon">
+              <i class="fas fa-search"></i>
+           </div>
+           <div>
+              <input class="input-search" type="text" placeholder="Search ..." maxlength="50">
+            </div>
+         </div>
+         <table>
+             <tr>
+                 <th width="8%">Id</th>
+                 <th>Name</th>
+                 <th width="50%">Description</th>
+                 <th>Category</th>
+                 <th *ngIf="user_role == 'Admin'" width="14%">Action</th>
+             </tr>
+             <tr>
+                 <td>1</td>
+                 <td>Laptop</td>
+                 <td>A portable microcomputer having its main components integrated into a single unit capable of battery-powered operation.</td>
+                 <td>Electronic</td>
+                 <td *ngIf="user_role == 'Admin'">
+                     <button type="button" class="btnico edit"><i class="fas fa-pen"></i></button>
+                     <button type="button" class="btnico delete"><i class="fas fa-trash-alt"></i></button>
+                 </td>
+             </tr>
+    </table>
+</div>

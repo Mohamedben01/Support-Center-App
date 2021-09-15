@@ -11,7 +11,7 @@ export class AuthGuardGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):boolean{
-      const jwtToken = localStorage.getItem('token');
+      const jwtToken =  localStorage.getItem('token');
       if(jwtToken !== null){
         return true;
       }

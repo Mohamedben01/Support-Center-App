@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
+  user_role: any = localStorage.getItem("role");
+
   constructor() { }
 
   ngOnInit(): void {
+    this.user_role;
   }
 
 }
