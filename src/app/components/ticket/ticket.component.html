@@ -1,2 +1,195 @@
-<p>ticket works!</p>
-<button (click)="logout()">Logout</button>
+<div [ngSwitch]="user_role">
+    
+<!--For Guest-->
+<div *ngSwitchCase="'Guest'">
+    <!--Button for guest-->
+<button type="button" class="btn">
+    <i class="fas fa-plus"></i> 
+    Add New
+</button>
+<div class="input-div">
+    <div class="icon">
+       <i class="fas fa-search"></i>
+    </div>
+    <div>
+       <input class="input-search" type="text" placeholder="Search ..." maxlength="50">
+    </div>
+</div>
+<div>
+    <h2>All tickets:</h2>
+        <table>
+                 <tr>
+                        <th width="8%">Id</th>
+                        <th>Status</th>
+                        <th>OpenDate</th>
+                        <th>Description</th>
+                        <th>Product</th>
+                        <th width="14%">Action</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Open</td>
+                        <td>2021-09-08 15:00</td>
+                        <td>Need help ASAP !!!</td>
+                        <td>Laptop</td>
+                        <td>
+                            <button type="button" class="btnico explore"  onclick="location.href='adminexploreticket.html'"><i class="fas fa-expand-alt"></i></button>
+                            <button type="button" class="btnico delete"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Close</td>
+                        <td>2021-09-08 17:00</td>
+                        <td>Can i refund this product</td>
+                        <td>keyboard</td>
+                        <td>
+                            <button type="button" class="btnico explore"  onclick="location.href='adminexploreticket.html'"><i class="fas fa-expand-alt"></i></button>
+                            <button type="button" class="btnico delete"><i class="fas fa-trash-alt"></i></button>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Open</td>
+                        <td>2021-09-08 18:00</td>
+                        <td>I have some questions</td>
+                        <td>Coffee</td>
+                        <td>
+                            <button type="button" class="btnico explore"  onclick="location.href='adminexploreticket.html'"><i class="fas fa-expand-alt"></i></button>
+                            <button type="button" class="btnico delete"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+</div>
+
+<!--For Tech-->
+<div *ngSwitchCase="'Technician'">
+    <div class="input-div">
+                <div class="icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div>
+                    <input class="input-search" type="text" placeholder="Search ..." maxlength="50">
+                </div>
+            </div>
+            <div>
+                <h2>Unassigned tickets:</h2>
+                <table>
+                    <tr>
+                        <th width="8%">Id</th>
+                        <th>Status</th>
+                        <th>OpenDate</th>
+                        <th>Description</th>
+                        <th>Product</th>
+                        <th width="14%">Action</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Open</td>
+                        <td>2021-09-08 15:00</td>
+                        <td>Need help ASAP !!!</td>
+                        <td>Laptop</td>
+                        <td>
+                            <button type="button" class="btnico assign"><i class="fas fa-arrow-down"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Close</td>
+                        <td>2021-09-08 17:00</td>
+                        <td>Can i refund this product</td>
+                        <td>keyboard</td>
+                        <td>
+                            <button type="button" class="btnico assign"><i class="fas fa-arrow-down"></i></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h2>Tickets assigned to me:</h2>
+                <table>
+                    <tr>
+                        <th width="8%">Id</th>
+                        <th>Status</th>
+                        <th>OpenDate</th>
+                        <th>Description</th>
+                        <th>Product</th>
+                        <th width="14%">Action</th>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Open</td>
+                        <td>2021-09-08 18:00</td>
+                        <td>I have some questions</td>
+                        <td>Coffee</td>
+                        <td>
+                            <button type="button" class="btnico edit"  onclick="location.href='techeditticket.html'"><i class="fas fa-pen"></i></button>
+                            <button type="button" class="btnico delete"><i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btnico unassign"><i class="fas fa-arrow-up"></i></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+</div>
+
+
+<!--For Admin-->
+<div *ngSwitchCase="'Admin'">
+    <div class="input-div">
+                <div class="icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div>
+                    <input class="input-search" type="text" placeholder="Search ..." maxlength="50">
+                </div>
+            </div>
+            <div>
+                <h2>All tickets:</h2>
+                <table>
+                    <tr>
+                        <th width="8%">Id</th>
+                        <th>Status</th>
+                        <th>OpenDate</th>
+                        <th>Description</th>
+                        <th>Product</th>
+                        <th width="14%">Action</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Open</td>
+                        <td>2021-09-08 15:00</td>
+                        <td>Need help ASAP !!!</td>
+                        <td>Laptop</td>
+                        <td>
+                            <button type="button" class="btnico explore"  onclick="location.href='adminexploreticket.html'"><i class="fas fa-expand-alt"></i></button>
+                            <button type="button" class="btnico delete"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Close</td>
+                        <td>2021-09-08 17:00</td>
+                        <td>Can i refund this product</td>
+                        <td>keyboard</td>
+                        <td>
+                            <button type="button" class="btnico explore"  onclick="location.href='adminexploreticket.html'"><i class="fas fa-expand-alt"></i></button>
+                            <button type="button" class="btnico delete"><i class="fas fa-trash-alt"></i></button>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Open</td>
+                        <td>2021-09-08 18:00</td>
+                        <td>I have some questions</td>
+                        <td>Coffee</td>
+                        <td>
+                            <button type="button" class="btnico explore"  onclick="location.href='adminexploreticket.html'"><i class="fas fa-expand-alt"></i></button>
+                            <button type="button" class="btnico delete"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+</div>
+
+</div>

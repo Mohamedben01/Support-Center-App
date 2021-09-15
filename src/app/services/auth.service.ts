@@ -4,22 +4,22 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public user!: Observable<User>;
 
   constructor(private http: HttpClient, private router: Router) {}
   
-  register(user: User) {
-    return this.http.post(`${environment.baseUrl}/api/auth/register`, user)
+  /* registration */
+  register(user: any): Observable<any> {
+    return this.http.post<any>(`${environment.baseUrl}/api/auth/register`, user);
   }
 
-  login(username: string, password: string){
+  /* Login */
+  login(username: string, password: string): Observable<any>{
     return this.http.post<any>(`${environment.baseUrl}/api/auth/login`, {username, password})
     .pipe(map
       ( data => {
@@ -33,9 +33,11 @@ export class AuthService {
     )
   }
 
+  /* logout */
   logout(){
     localStorage.removeItem('username');
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.router.navigate(["/login"]);
   }
 }

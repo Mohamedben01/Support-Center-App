@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-ticket',
@@ -9,12 +8,13 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class TicketComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  user_role: any = localStorage.getItem('role');
+  
+  constructor() { }
 
   ngOnInit(): void {
+    this.user_role;
   }
 
-  logout(){
-    this.authService.logout();
-  }
+  
 }
