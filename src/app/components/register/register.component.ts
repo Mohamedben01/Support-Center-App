@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  
+  user: User = new User;
   registerForm!: FormGroup;
   error!: string;
 
@@ -35,8 +37,14 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
         return;
     }
+    this.user.firstName = this.f.firstname.value;
+    this.user.lastName = this.f.lastname.value;
+    this.user.email = this.f.email.value;
+    this.user.userName = this.f.username.value;
+    this.user.password = this.f.password.value;
 
-    this.authService.register(this.registerForm.value)
+    this.authService.register(this.user)
+    .pipe(first())
     .subscribe(
         data => {
           console.log('Registration successful');
