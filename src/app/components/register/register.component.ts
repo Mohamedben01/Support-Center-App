@@ -42,17 +42,18 @@ export class RegisterComponent implements OnInit {
     this.user.email = this.f.email.value;
     this.user.userName = this.f.username.value;
     this.user.password = this.f.password.value;
-
     this.authService.register(this.user)
     .pipe(first())
     .subscribe(
         data => {
+          console.log(data);
           console.log('Registration successful');
-            this.router.navigate(['../login']);
+          this.router.navigate(['../login']);
         },
         error => {
-          console.log("Error !!!");
-          this.error = "Required Field";
+          console.log(this.user.userName);
+
+          console.log(error.error);
         });
   }
 }
