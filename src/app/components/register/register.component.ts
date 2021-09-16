@@ -3,7 +3,6 @@ import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-register',
