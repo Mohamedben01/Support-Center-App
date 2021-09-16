@@ -1,0 +1,47 @@
+
+<h2>New ticket</h2>
+            <div class="content">
+                <form class="newticket-div" [formGroup]="ticketForm" (ngSubmit)="onAddTicket()">
+                    <div class="span">
+                        Status
+                    </div>
+                    <div>
+                        <select formControlName="status" class="input-style">
+                            <option value="open">Open</option>
+                            <option value="close" >Close</option>
+                        </select>
+                    </div>
+                    <div class="span">
+                        Open date
+                    </div>
+                    <div>
+                        <input formControlName="opendate" class="input-style" type="datetime-local">
+                    </div>
+                    <div class="span">
+                        Product
+                    </div>
+                    <div>
+                        <select formControlName="product" class="input-style">
+                            <option selected>Select a product</option>
+                        </select>
+                    </div>
+                    <div class="span">
+                        Ticket Description
+                    </div>
+                    <div>
+                        <textarea formControlName="description" rows="10" class="textarea-style" type="text" placeholder="Give it a short description"></textarea>
+                    </div>
+                    <div class="span">
+                        Chat
+                    </div>
+                    <div class="chat-div">
+                        <textarea disabled rows="10" class="textareachat-style" type="text" ></textarea>
+                        <input class="inputchat-style" type="text" placeholder="type a message here">
+                        <span class="btnsent">
+                            <a>sent <i class="fas fa-paper-plane"></i></a>
+                        </span>
+                    </div>
+                    <input type="button" class="btn2 btncancel" routerLink="/user/ticket" value="Cancel">
+                    <input type="submit" class="btn2 btnsave" value="Save">
+                </form>
+            </div>

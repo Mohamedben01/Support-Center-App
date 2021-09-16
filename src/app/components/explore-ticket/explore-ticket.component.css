@@ -1,0 +1,150 @@
+.chat-div {
+  background-color: #fafafa;
+  justify-content: center;
+  border: 0.5px solid #afc9cd;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.inputchat-style {
+  font-family: 'Rubik', sans-serif;
+  width: 85%;
+  margin-left: 1%;
+  font-size: 15px;
+  height: 40px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 0.5px solid #afc9cd;
+}
+
+.btnsent {
+  height: 40px;
+  width: 10%;
+  display: flex;
+  float: right;
+  flex-direction: row;
+  user-select: none;
+  cursor: pointer;
+  color: royalblue;
+  border-radius: 5px;
+  padding: 4px;
+  margin-right: 1%;
+
+}
+
+.btnsent a {
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.btnsent:hover {
+  user-select: none;
+  cursor: pointer;
+  background-color: #e7e7e7;
+}
+
+.textareachat-style {
+  font-family: 'Rubik', sans-serif;
+  resize: none;
+  width: 100%;
+  font-size: 15px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 0.5px solid #afc9cd;
+}
+
+.content {
+  border-top: 0.4px solid rgba(8, 37, 45, .1);
+  border-bottom: 0.4px solid rgba(8, 37, 45, .1);
+  margin: 10px 10px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  height: 83%;
+  overflow-y: scroll;
+}
+
+.newticket-div {
+  width: 65%;
+  transform: translateX(25%);
+}
+
+.input-style {
+  font-family: 'Rubik', sans-serif;
+  width: 100%;
+  font-size: 15px;
+  height: 40px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 0.5px solid #afc9cd;
+}
+
+.textarea-style {
+  font-family: 'Rubik', sans-serif;
+  width: 100%;
+  font-size: 15px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 0.5px solid #afc9cd;
+  resize: none;
+}
+
+.input-div {
+  float: right;
+  display: grid;
+  width: 25%;
+  grid-template-columns: 10% 80%;
+  border-bottom: 2px solid #08252d;
+  margin: 25px 20px;
+  padding-bottom: 2px;
+}
+
+.icon {
+  padding-left: 5px;
+}
+
+h2 {
+  font-family: 'Rubik', sans-serif;
+  user-select: none;
+  font-size: 24px;
+  color: #08252d;
+  line-height: 70px;
+  margin: 0 20px;
+}
+
+.btn2 {
+  float: right;
+  height: 35px;
+  font-size: 15px;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  color: #fafafa;
+  margin-right: 10px;
+}
+
+.btncancel {
+  background-color: #646464;
+}
+
+.btncancel:hover {
+  background-color: #4e4e4e;
+}
+
+.btnsave {
+  background-color: #7386d5;
+}
+
+.btnsave:hover {
+  background-color: #6374bd;
+}

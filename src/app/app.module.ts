@@ -9,6 +9,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuardGuard } from './services/guards/auth-guard.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { TicketServiceService } from './services/ticket-service.service';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService, AuthGuardGuard],
+  providers: [AuthService, AuthGuardGuard, TicketServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

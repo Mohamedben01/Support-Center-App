@@ -127,5 +127,16 @@ table {
 .delete:hover {
   background-color: red;
 }
-
+.assign {
+  color: green;
+}
+.unassign {
+  color: orange;
+}
+.assign:hover {
+  background-color: green;
+}
+.unassign:hover {
+  background-color: orange;
+}
 

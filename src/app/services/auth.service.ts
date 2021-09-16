@@ -23,7 +23,6 @@ export class AuthService {
     return this.http.post<any>(`${environment.baseUrl}/api/auth/login`, {username, password})
     .pipe(map
       ( data => {
-           console.log(data);
            localStorage.setItem('username', username);
            localStorage.setItem('role', data.roles);
            localStorage.setItem('token', data.accessToken);

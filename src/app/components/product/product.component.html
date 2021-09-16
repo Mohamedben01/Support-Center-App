@@ -1,6 +1,6 @@
  <div class="head">
     <div>
-        <button *ngIf="user_role === 'Admin'" type="button" class="btn">
+        <button routerLink="/user/addProduct" *ngIf="user_role === 'Admin'" type="button" class="btn">
             <i class="fas fa-plus"></i> 
             Add New
         </button>
@@ -26,7 +26,7 @@
                  <td>A portable microcomputer having its main components integrated into a single unit capable of battery-powered operation.</td>
                  <td>Electronic</td>
                  <td *ngIf="user_role == 'Admin'">
-                     <button type="button" class="btnico edit"><i class="fas fa-pen"></i></button>
+                     <button type="button" routerLink="/user/editProduct" class="btnico edit"><i class="fas fa-pen"></i></button>
                      <button type="button" class="btnico delete"><i class="fas fa-trash-alt"></i></button>
                  </td>
              </tr>
