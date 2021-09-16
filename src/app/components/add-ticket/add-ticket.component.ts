@@ -11,18 +11,30 @@ export class AddTicketComponent implements OnInit {
 
   ticketForm: FormGroup = new FormGroup({
     status : new FormControl(),
-    opendate: new FormControl(),
-    product: new FormControl(),
+    openDate: new FormControl(),
+    productId: new FormControl(),
     description: new FormControl()
   });
 
 
-  constructor(private ticketService : TicketServiceService) { }
+  constructor(private ticketService: TicketServiceService) { }
 
   ngOnInit(): void {
   }
 
+  /* Create new ticket by guest */
   onAddTicket(){
+    if(this.ticketForm.invalid){
+      return
+    }
     console.log(this.ticketForm.value);
+    this.ticketService.addTicket(this.ticketForm.value).subscribe(
+      ticket =>{
+        console.log(ticket);
+      },
+      error=>{
+        console.log("Error !!!");
+      }
+    )
   }
 }
