@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccessGuardGuard } from '../services/guards/access-guard.guard';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AddTicketComponent } from './add-ticket/add-ticket.component';
 import { AddUserComponent } from './add-user/add-user.component';
@@ -20,11 +21,11 @@ const routes: Routes = [
       { path: 'addTicket', component: AddTicketComponent },
       { path: 'exploreTicket', component: ExploreTicketComponent },
       { path: 'product', component: ProductComponent },
-      { path: 'addProduct', component: AddProductComponent },
-      { path: 'editProduct', component:EditProductComponent },
-      { path: 'management', component: UserManagementComponent },
-      { path: 'addUser', component: AddUserComponent },
-      { path: 'editUser', component: EditUserComponent },
+      { path: 'addProduct', canActivate: [AccessGuardGuard], component: AddProductComponent },
+      { path: 'editProduct', canActivate: [AccessGuardGuard], component:EditProductComponent },
+      { path: 'management', canActivate: [AccessGuardGuard], component: UserManagementComponent },
+      { path: 'addUser', canActivate: [AccessGuardGuard], component: AddUserComponent },
+      { path: 'editUser', canActivate: [AccessGuardGuard], component: EditUserComponent },
       { path: '', redirectTo: '/user/ticket', pathMatch: 'full' },
     ]
   }
