@@ -7,7 +7,10 @@
                       First Name
                   </div>
                   <div>
-                      <input formControlName="firstname" class="input" type="text" placeholder="First Name" maxlength="25">
+                      <input formControlName="firstname" class="input" type="text" placeholder="First Name" [ngStyle]="{'border': submitted && f.firstname.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+                      <div *ngIf="submitted && f.firstname.invalid" class="invalid-feedback" >
+                          <div *ngIf="f.firstname.errors?.required">First Name is required</div>
+                      </div>
                   </div>
               </div>
               <div class="input-div others">
@@ -15,7 +18,10 @@
                       Last Name
                   </div>
                   <div>
-                      <input formControlName="lastname" class="input" type="text" placeholder="Last Name" maxlength="25">
+                      <input formControlName="lastname" class="input" type="text" placeholder="Last Name" [ngStyle]="{'border': submitted && f.lastname.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+                      <div *ngIf="submitted && f.lastname.invalid" class="invalid-feedback" >
+                          <div *ngIf="f.lastname.errors?.required">Last Name is required</div>
+                      </div>
                   </div>
               </div>
               <div class="input-div others">
@@ -23,7 +29,11 @@
                       Email
                   </div>
                   <div>
-                      <input formControlName="email" class="input" type="text" placeholder="Email">
+                      <input formControlName="email" class="input" type="text" placeholder="Email" [ngStyle]="{'border': submitted && f.email.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback" >
+                          <div *ngIf="f.email.errors?.required">Email is required</div>
+                          <div *ngIf="f.email.errors?.email">Email must be a valid email address</div>
+                      </div>
                   </div>
               </div>
               <div class="input-div others">
@@ -31,7 +41,11 @@
                       Phone
                   </div>
                   <div>
-                      <input formControlName="phone" class="input" type="text" placeholder="Phone">
+                      <input formControlName="phone" class="input" type="text" placeholder="Phone" [ngStyle]="{'border': submitted && f.phone.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+                      <div *ngIf="submitted && f.phone.invalid" class="invalid-feedback" >
+                          <div *ngIf="f.phone.errors?.required">Phone is required</div>
+                          <div *ngIf="f.phone.errors?.pattern">Phone must be a valid MA number</div>
+                      </div>
                   </div>
               </div>
           </span>
@@ -41,7 +55,10 @@
                       Username
                   </div>
                   <div>
-                      <input formControlName="username" class="input" type="text" placeholder="Username">
+                      <input formControlName="username" class="input" type="text" placeholder="Username" [ngStyle]="{'border': submitted && f.username.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+                      <div *ngIf="submitted && f.username.invalid" class="invalid-feedback" >
+                          <div *ngIf="f.username.errors?.required">Username is required</div>
+                      </div>
                   </div>
               </div>
               <div class="input-div others">
@@ -49,7 +66,11 @@
                       Password
                   </div>
                   <div>
-                      <input formControlName="password" class="input" type="password" placeholder="Password">
+                      <input formControlName="password" class="input" type="password" placeholder="Password" [ngStyle]="{'border': submitted && f.password.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+                      <div *ngIf="submitted && f.password.invalid" class="invalid-feedback" >
+                          <div *ngIf="f.password.errors?.required">Password is required</div>
+                          <div *ngIf="f.password.errors?.minlength">Password must be at least 6 chars</div>
+                      </div>
                   </div>
               </div>
               <div class="input-div others">
@@ -57,12 +78,21 @@
                       Confirm Password
                   </div>
                   <div>
-                      <input class="input" type="password" placeholder="Confirm Password">
+                      <input formControlName="confirmpassword" class="input" type="password" placeholder="Confirm Password" [ngStyle]="{'border': submitted && f.confirmpassword.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+                      <div *ngIf="submitted && f.confirmpassword.invalid" class="invalid-feedback" >
+                          <div *ngIf="f.confirmpassword.errors?.required">Confirm Password is required</div>
+                          <div *ngIf="f.confirmpassword.errors?.notEqual">Password do not match</div>
+                        </div>
                   </div>
               </div>
-              <div *ngIf="error" class="error-feedback">{{error}}</div>
               <a class="areg" routerLink="/login">Login here</a>
-              <input  type="submit" class="btn btnreg" value="Submit">
+              <input [ngStyle]="{'display': loading ? 'none' : 'block'}" type="submit" class="btn btnreg" value="Submit">
+              <div *ngIf="loading" class="spinner"></div>
           </span>
+          <div>
+            <div style="user-select: none; color: #eaeaea;">.</div>
+            <div *ngIf="error" class="error-feedback"><i class="fas fa-exclamation-triangle"></i> {{error}}</div>
+
+          </div>
       </form>
   </div>
