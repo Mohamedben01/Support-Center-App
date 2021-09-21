@@ -49,15 +49,41 @@
   background-color: #e7e7e7;
 }
 
-.textareachat-style {
-  font-family: 'Rubik', sans-serif;
-  resize: none;
+.boxChat {
   width: 100%;
   font-size: 15px;
   padding: 10px;
   margin-bottom: 15px;
   border-radius: 5px;
   border: 0.5px solid #afc9cd;
+  height: 15rem;
+  overflow-y: scroll;
+}
+.boxChat .text ul{
+  list-style: none;
+  padding:.7rem;
+}
+.boxChat ul li{
+  border: none;
+  border-radius: 1rem;
+  background: #eee;
+  padding: .5rem;
+  width: 80%;
+  margin-top: .9rem;
+  font-family: 'Rubik',sans-serif;
+}
+
+.boxChat ul li h5{
+  color: #111;
+  font-size: 1rem;
+}
+.boxChat ul li p{
+  font-size: .8rem;
+  color: #242323;
+}
+.boxChat ul li span{
+  color: #998686;
+  font-size: .5rem;
 }
 
 .content {
@@ -84,6 +110,7 @@
   margin-bottom: 15px;
   border-radius: 5px;
   border: 0.5px solid #afc9cd;
+  background: #eee;
 }
 
 .textarea-style {
@@ -95,12 +122,7 @@
   border-radius: 5px;
   border: 0.5px solid #afc9cd;
   resize: none;
-}
-
-.span {
-  font-family: 'Rubik', sans-serif;
-  font-size: 15px;
-  line-height: 30px;
+  background: #eee;
 }
 
 .input-div {
@@ -153,4 +175,31 @@ h2 {
 
 .btnsave:hover {
   background-color: #6374bd;
+}
+/* Spinner */
+.boxSpinner {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  border: 6px solid #eaeaea;
+  border-top: 6px solid #17a2b8;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

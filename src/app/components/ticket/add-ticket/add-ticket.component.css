@@ -1,4 +1,17 @@
+.content {
+  border-top: 0.4px solid rgba(8, 37, 45, .1);
+  border-bottom: 0.4px solid rgba(8, 37, 45, .1);
+  margin: 10px 10px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  height: 83%;
+  overflow-y: scroll;
+}
 
+.newticket-div {
+  width: 65%;
+  transform: translateX(25%);
+}
 
 .chat-div {
   background-color: #fafafa;
@@ -33,9 +46,10 @@
   border-radius: 5px;
   padding: 4px;
   margin-right: 1%;
-  
+
 }
-.btnsent a{
+
+.btnsent a {
   display: flex;
   gap: .5rem;
   justify-content: center;
@@ -60,22 +74,6 @@
   border-radius: 5px;
   border: 0.5px solid #afc9cd;
 }
-
-.content {
-  border-top: 0.4px solid rgba(8, 37, 45, .1);
-  border-bottom: 0.4px solid rgba(8, 37, 45, .1);
-  margin: 10px 10px;
-  padding-top: 10px;
-  padding-bottom: 50px;
-  height: 83%;
-  overflow-y: scroll;
-}
-
-.newticket-div {
-  width: 65%;
-  transform: translateX(25%);
-}
-
 .input-style {
   font-family: 'Rubik', sans-serif;
   width: 100%;
@@ -86,7 +84,12 @@
   border-radius: 5px;
   border: 0.5px solid #afc9cd;
 }
-
+.input-style option{
+  width: 100%;
+  padding: 1rem;
+  border-radius: .5rem;
+  border: .1rem solid #afc9cd
+}
 .textarea-style {
   font-family: 'Rubik', sans-serif;
   width: 100%;
@@ -97,11 +100,13 @@
   border: 0.5px solid #afc9cd;
   resize: none;
 }
+
 .span {
   font-family: 'Rubik', sans-serif;
   font-size: 15px;
   line-height: 30px;
 }
+
 .input-div {
   float: right;
   display: grid;
@@ -126,7 +131,6 @@ h2 {
 }
 
 .btn2 {
-  float: right;
   height: 35px;
   font-size: 15px;
   outline: none;
@@ -152,4 +156,67 @@ h2 {
 
 .btnsave:hover {
   background-color: #6374bd;
+}
+
+/* Message */
+.box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.box .message{
+  font-size: 1rem;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: #dbdbdb;
+  border-radius: .5rem;
+  transform: translateX(110%);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+.box .message.active{
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* spinner */
+/* Spinner */
+
+.boxx {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.boxSpinner{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spinner {
+  border: 6px solid #eaeaea;
+  border-top: 6px solid #17a2b8;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
