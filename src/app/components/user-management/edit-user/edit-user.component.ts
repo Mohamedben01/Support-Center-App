@@ -70,7 +70,6 @@ export class EditUserComponent implements OnInit {
     }
     this.user = Object.assign(objid,this.edituserForm.value, objrole)
 
-    console.log(this.user)
     this.submitted = true;
     if (this.edituserForm.invalid) {
       return;
