@@ -21,8 +21,7 @@ export class EditProductComponent implements OnInit {
 
  
   constructor(private route: ActivatedRoute,
-              private productService: ProductServiceService,
-              private fb: FormBuilder) 
+              private productService: ProductServiceService) 
               {
                 this.productForm = new FormBuilder().group({
                   id: [''],

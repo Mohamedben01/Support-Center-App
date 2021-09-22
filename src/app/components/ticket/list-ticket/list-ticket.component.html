@@ -34,16 +34,21 @@
          <span class="spinner"></span>
      </div>
      <ng-template #GuestTickets>
-         <table>
-                    <tr>
-                        <th width="8%">Id</th>
-                        <th>Status</th>
-                        <th>OpenDate</th>
-                        <th>Description</th>
-                        <th>Product</th>
-                        <th width="14%">Action</th>
-                    </tr>
-                    <tr *ngIf="guest_tickets?.length === 0">
+         <div id="table-wrapper">
+            <div style="height: 24rem;" id="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                           <th width="8%">Id</th>
+                           <th>Status</th>
+                           <th>OpenDate</th>
+                           <th>Description</th>
+                           <th>Product</th>
+                           <th width="14%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="guest_tickets.length === 0">
                         <td colspan="6">
                             There is no ticket right now !
                         </td>
@@ -54,7 +59,7 @@
                             <span *ngIf="ticket.status ; else Close">Open</span>
                             <ng-template #Close>Close</ng-template>
                         </td>
-                        <td>{{ticket.openDate | date: 'yy-MM-dd HH:mm'}}</td>
+                        <td>{{ticket.openDate | date: 'yyyy-MM-dd HH:mm'}}</td>
                         <td>{{ticket.description}}</td>
                         <td>
                             {{ticket.product.name}}
@@ -64,9 +69,12 @@
                             <button type="button" (click)="deleteTicket(ticket.id)" class="btnico delete"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
+                    </tbody>
                 </table>
+            </div>
+         </div>
      </ng-template>   
-    </div>
+</div>
 </div>
 
 <!--For Tech-->
@@ -85,17 +93,22 @@
                       <span class="spinner"></span>
                 </div>
                 <ng-template #Unassigned>
+                  <div id="table-wrapper">
+                   <div id="table-scroll">
                     <table>
-                    <tr>
-                        <th width="4%">Id</th>
-                        <th width="6%">Status</th>
-                        <th>OpenDate</th>
-                        <th >Description</th>
-                        <th>Guest</th>
-                        <th>Product</th>
-                        <th width="4%">Action</th>
-                    </tr>
-                    <tr *ngIf="tech_unassign_tickets?.length === 0">
+                     <thead>
+                         <tr>
+                             <th width="4%">Id</th>
+                             <th width="6%">Status</th>
+                             <th>OpenDate</th>
+                             <th >Description</th>
+                             <th>Guest</th>
+                             <th>Product</th>
+                             <th width="4%">Action</th>
+                         </tr>     
+                     </thead>
+                     <tbody>
+                         <tr *ngIf="tech_unassign_tickets.length === 0">
                         <td colspan="7">
                             There is no tickets unassign right now.
                         </td>
@@ -106,7 +119,7 @@
                             <span *ngIf="ticket.status ; else Close">Open</span>
                             <ng-template #Close>Close</ng-template>
                         </td>
-                        <td>{{ticket.openDate | date: 'yy-MM-dd HH:mm'}}</td>
+                        <td>{{ticket.openDate | date: 'yyyy-MM-dd HH:mm'}}</td>
                         <td>{{ticket.description}}</td>
                         <td>{{ticket.guest.userName}}</td>
                         <td>
@@ -118,9 +131,14 @@
                             </button>
                         </td>
                     </tr>
+                     </tbody>
                 </table>
-                </ng-template>
+               </div>
+              </div>
+            </ng-template>
             </div>
+
+
             <div>
                 <div class="box">
                     <h2>Tickets assigned to me:</h2>
@@ -147,18 +165,18 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr *ngIf="tech_assign_tickets?.length === 0">
-                        <td colspan="7">
-                            There is no ticket assigned for you right now.
-                        </td>
-                    </tr>
+                        <tr *ngIf="tech_assign_tickets.length === 0">
+                               <td colspan="7">
+                                     There is no ticket assigned for you right now.
+                                </td>
+                         </tr>
                     <tr *ngFor="let ticket of tech_assign_tickets">
                         <td>{{ticket.id}}</td>
                         <td>
                             <span *ngIf="ticket.status; else Close">Open</span>
                             <ng-template #Close>Close</ng-template>
                         </td>
-                        <td>{{ticket.openDate | date: 'yy-MM-dd HH:mm'}}</td>
+                        <td>{{ticket.openDate | date: 'yyyy-MM-dd HH:mm'}}</td>
                         <td>{{ticket.description}}</td>
                         <td>{{ticket.guest.userName}}</td>
                         <td>
@@ -173,10 +191,10 @@
                     </tr>
                     </tbody>
                 </table>
-                        </div>
-                    </div>
-                </ng-template>
             </div>
+        </div>
+    </ng-template>
+</div>
 </div>
 
 
@@ -199,37 +217,45 @@
                       <span class="spinner"></span>
                 </div>
                 <ng-template #AllTickets>
-                    <table>
-                    <tr>
-                        <th width="4%">Id</th>
-                        <th>Status</th>
-                        <th>OpenDate</th>
-                        <th >Description</th>
-                        <th>Guest</th>
-                        <th>Product</th>
-                        <th width="10%">Action</th>
-                    </tr>
-                    <tr *ngIf="all_tickets.length === 0">
-                        <td colspan="7">There is no Ticket right now</td>
-                    </tr>
-                    <tr *ngFor="let ticket of all_tickets">
-                        <td>{{ticket.id}}</td>
-                        <td>
-                            <span *ngIf="ticket.status; else Close">Open</span>
-                            <ng-template #Close>Close</ng-template>
-                        </td>
-                        <td>{{ticket.openDate | date: 'yy-MM-dd Hh:mm'}}</td>
-                        <td>{{ticket.description}}</td>
-                        <td>{{ticket.guest.userName}}</td>
-                        <td>
-                            {{ticket.product.name}}
-                        </td>
-                        <td>
-                            <button type="button" class="btnico explore"  routerLink="/user/ticket/exploreTicket" [queryParams]="{id : ticket.id}" ><i class="fas fa-expand-alt"></i></button>
-                            <button type="button" (click)="deleteTicket(ticket.id)" class="btnico delete"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-              </table>
+                  <div id="table-wrapper">
+                     <div style="height: 24rem;" id="table-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                   <th width="4%">Id</th>
+                                   <th>Status</th>
+                                   <th>OpenDate</th>
+                                   <th >Description</th>
+                                   <th>Guest</th>
+                                   <th>Product</th>
+                                   <th width="10%">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                 <tr *ngIf="all_tickets.length === 0">
+                                    <td colspan="7">There is no Ticket right now</td>
+                                 </tr>
+                                 <tr *ngFor="let ticket of all_tickets">
+                                     <td>{{ticket.id}}</td>
+                                     <td>
+                                         <span *ngIf="ticket.status; else Close">Open</span>
+                                         <ng-template #Close>Close</ng-template>
+                                     </td>
+                                     <td>{{ticket.openDate | date: 'yyyy-MM-dd Hh:mm'}}</td>
+                                     <td>{{ticket.description}}</td>
+                                     <td>{{ticket.guest.userName}}</td>
+                                     <td>
+                                         {{ticket.product.name}}
+                                     </td>
+                                     <td>
+                                         <button type="button" class="btnico explore"  routerLink="/user/ticket/exploreTicket" [queryParams]="{id : ticket.id}" ><i class="fas fa-expand-alt"></i></button>
+                                         <button type="button" (click)="deleteTicket(ticket.id)" class="btnico delete"><i class="fas fa-trash-alt"></i></button>
+                                     </td>
+                                 </tr>
+                            </tbody>                   
+                       </table>
+                    </div>
+                   </div>
                 </ng-template>
             </div>
      </div>

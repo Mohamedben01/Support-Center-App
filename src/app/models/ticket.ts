@@ -4,4 +4,5 @@ export class Ticket{
     description!: string;
     openDate!: any;
     productName!: any;
+    messages : any = [];
 }

@@ -1,14 +1,3 @@
-#table-wrapper{
-  position: relative;
-}
-#table-scroll{
-  height: 1rem;
-  overflow: auto;
-  margin-top: 20px;
-}
-#table-wrapper table{
-  width: 100%;
-}
 
 
 .input-div {
@@ -83,6 +72,18 @@ h2 {
   line-height: 70px;
   margin: 0 20px;
 }
+#table-wrapper{
+  position: relative;
+}
+#table-scroll{
+  height: 11rem;
+  overflow: auto;
+  width: 100%;
+}
+#table-wrapper table{
+  width: 100%;
+  
+}
 
 table,
 td,
@@ -104,10 +105,6 @@ tr>td {
   border-top: 0.4px solid rgba(8, 37, 45, .1);
 }
 
-table {
-  width: 100%;
-  border-spacing: 0
-}
 
 .btnico {
   user-select: none;

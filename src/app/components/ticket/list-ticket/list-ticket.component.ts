@@ -11,7 +11,7 @@ import { TicketServiceService } from '../ticket-service.service';
 })
 export class ListTicketComponent implements OnInit {
 
-  user_role: any;
+  user_role: any  = localStorage.getItem('role');
 
   guest_tickets : any = [];
   ticketId !: number;
@@ -29,7 +29,7 @@ export class ListTicketComponent implements OnInit {
   constructor(private ticketService: TicketServiceService) { }
 
   ngOnInit(): void {
-    this.user_role = localStorage.getItem('role');
+    this.user_role;
     this.allGuestTickets();
     this.allUnAssignTickets();
     this.allAssignTickets();
@@ -45,7 +45,6 @@ export class ListTicketComponent implements OnInit {
       data => {
         this.loading = false;
         this.guest_tickets = data;
-        console.log(this.guest_tickets);
       }, 
       error =>{
         console.log("There is no ticket  here !!!");
@@ -148,13 +147,11 @@ export class ListTicketComponent implements OnInit {
       this.ticketService.getUnAssignTickets().subscribe(
         data => {
           this.loading = false;
-          console.log(data);
           this.tech_unassign_tickets = data;
         },
         error =>{
           this.loading = false;
           console.log("Error!!! Unassign Tickets");
-          console.error();
         }
       )
     }
@@ -165,13 +162,11 @@ export class ListTicketComponent implements OnInit {
       this.ticketService.getAssignTickets().subscribe(
         data =>{
           this.loading = false;
-          console.log(data);
           this.tech_assign_tickets = data;
         },
         error =>{
           this.loading = false;
           console.log("Error!!! Assign Tickets");
-          console.error();
         }
       )
     }
@@ -181,12 +176,11 @@ export class ListTicketComponent implements OnInit {
       const msgBox = document.querySelector('#message2');
       this.ticketService.assignOrUnassignTicketToTech(id).subscribe(
         response =>{
-          console.log(response);
-          this.allAssignTickets();
-          this.allUnAssignTickets();
           this.message = "Operation is done Successfully";
           this.msgColor = 'Green';
           msgBox?.classList.add('active');
+          this.allAssignTickets();
+          this.allUnAssignTickets();
           setTimeout(()=>{msgBox?.classList.remove('active')},4400);
         },
         error =>{
