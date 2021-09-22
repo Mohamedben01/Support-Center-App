@@ -10,6 +10,9 @@ import { AddTicketComponent } from './ticket/add-ticket/add-ticket.component';
 import { ExploreTicketComponent } from './ticket/explore-ticket/explore-ticket.component';
 import { ListTicketComponent } from './ticket/list-ticket/list-ticket.component';
 import { TicketComponent } from './ticket/ticket.component';
+import { AddUserComponent } from './user-management/add-user/add-user.component';
+import { EditUserComponent } from './user-management/edit-user/edit-user.component';
+import { ListUsersComponent } from './user-management/list-users/list-users.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 
 const routes: Routes = [
@@ -33,7 +36,14 @@ const routes: Routes = [
          { path: '', redirectTo: '/user/product/listProduct', pathMatch: 'full' }
        ]
       },
-      { path: 'management', component: UserManagementComponent },
+      { path: 'management', component: UserManagementComponent, children:
+      [
+        { path: 'listUsers', component: ListUsersComponent },
+        { path: 'addUser', component: AddUserComponent },
+        { path: 'editUser/:id', component: EditUserComponent },
+        { path: '', redirectTo: '/user/management/listUsers', pathMatch: 'full' }
+      ]
+    },
       { path: '', redirectTo: '/user/ticket', pathMatch: 'full' },
     ]
   }
