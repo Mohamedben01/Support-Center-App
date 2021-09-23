@@ -1,22 +1,27 @@
-<h2>New user</h2>
+<div class="box">
+    <h2>New user</h2>
+    <div *ngIf="message != null" class="message">
+        <h4 [ngStyle]="{'color':msgColor}">{{message}}</h4>
+    </div>
+</div>
 <div class="content">
     <form class="div-style" [formGroup]="userForm" (ngSubmit)="onAddUser()">
         <div class="span">
             First Name
         </div>
         <div>
-            <input formControlName="firstname" class="input-style" type="text" placeholder="First Name" [ngStyle]="{'border': submitted && f.firstname.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
-            <div *ngIf="submitted && f.firstname.invalid" class="invalid-feedback" >
-                <div *ngIf="f.firstname.errors?.required">First Name is required</div>
+            <input formControlName="firstName" class="input-style" type="text" placeholder="First Name" [ngStyle]="{'border': submitted && f.firstName.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+            <div *ngIf="submitted && f.firstName.invalid" class="invalid-feedback" >
+                <div *ngIf="f.firstName.errors?.required">First Name is required</div>
             </div>
         </div>
         <div class="span">
             Last Name
         </div>
         <div>
-            <input formControlName="lastname" class="input-style" type="text" placeholder="Last Name" [ngStyle]="{'border': submitted && f.lastname.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
-            <div *ngIf="submitted && f.lastname.invalid" class="invalid-feedback" >
-                <div *ngIf="f.lastname.errors?.required">Last Name is required</div>
+            <input formControlName="lastName" class="input-style" type="text" placeholder="Last Name" [ngStyle]="{'border': submitted && f.lastName.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+            <div *ngIf="submitted && f.lastName.invalid" class="invalid-feedback" >
+                <div *ngIf="f.lastName.errors?.required">Last Name is required</div>
             </div>
         </div>
         <div class="span">
@@ -54,9 +59,9 @@
             Username
         </div>
         <div>
-            <input formControlName="username" class="input-style" type="text" placeholder="Username" [ngStyle]="{'border': submitted && f.username.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
-            <div *ngIf="submitted && f.username.invalid" class="invalid-feedback" >
-                <div *ngIf="f.username.errors?.required">Username is required</div>
+            <input formControlName="userName" class="input-style" type="text" placeholder="Username" [ngStyle]="{'border': submitted && f.userName.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+            <div *ngIf="submitted && f.userName.invalid" class="invalid-feedback" >
+                <div *ngIf="f.userName.errors?.required">Username is required</div>
             </div>
         </div>
         <div class="span">

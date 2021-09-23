@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 import { UserServiceService } from '../user-service.service';
 
 @Component({
@@ -17,20 +16,21 @@ export class AddUserComponent implements OnInit {
   submitted = false;
   roles: any = [{id: 1, name: "Admin"},{id: 2, name: "Technician"}, {id: 3, name: "Guest"}]
   user!: any;
+  message : string = '';
+  msgColor! : string;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserServiceService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]],
       phone: ['', [Validators.required, Validators.pattern('(\\+212|0)([\\-_/]*)(\\d[\\-_/]*){9}')]],
-      username: ['', Validators.required],
+      userName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       roles: [null, Validators.required]
   })
@@ -52,15 +52,22 @@ export class AddUserComponent implements OnInit {
     }
 
     this.loading = true;
+    const msgBox = document.querySelector('.message');
     this.userService.addUser(this.user)
     .subscribe(
         data => {
         this.loading = false;
-        this.router.navigate(["/user/management"])
+        this.message = "User is Added Successfully";
+        this.msgColor = 'Green';
+        msgBox?.classList.add('active');
+        setTimeout(()=>{msgBox?.classList.remove('active')},4500);
       },
       error => {
         this.loading = false;
-        this.error = error.error.message;
-    });
+        this.message = error.error.message;
+        this.msgColor = 'Red';
+        msgBox?.classList.add('active');
+        setTimeout(()=>{msgBox?.classList.remove('active')},4500);
+      });
   }
 }

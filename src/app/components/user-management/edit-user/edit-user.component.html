@@ -1,4 +1,9 @@
-<h2>Edit user</h2>
+<div class="box">
+    <h2>Edit user</h2>
+    <div *ngIf="message != null" class="message">
+        <h4 [ngStyle]="{'color':msgColor}">{{message}}</h4>
+    </div>
+</div>
 <div class="content">
     <form *ngIf="user" class="div-style" [formGroup]="edituserForm" (ngSubmit)="saveUser()">
         <div class="span">
@@ -11,7 +16,7 @@
             First Name
         </div>
         <div>
-            <input formControlName="firstName" class="input-style" type="text" placeholder="First Name">
+            <input formControlName="firstName" class="input-style" type="text" placeholder="First Name" [ngStyle]="{'border': submitted && f.firstName.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
             <div *ngIf="submitted && f.firstName.invalid" class="invalid-feedback" >
                 <div *ngIf="f.firstName.errors?.required">First Name is required</div>
             </div>
@@ -20,7 +25,7 @@
             Last Name
         </div>
         <div>
-            <input formControlName="lastName" class="input-style" type="text" placeholder="Last Name">
+            <input formControlName="lastName" class="input-style" type="text" placeholder="Last Name" [ngStyle]="{'border': submitted && f.lastName.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
             <div *ngIf="submitted && f.lastName.invalid" class="invalid-feedback" >
                 <div *ngIf="f.lastName.errors?.required">Last Name is required</div>
             </div>
@@ -29,28 +34,42 @@
             Email
         </div>
         <div>
-            <input formControlName="email" class="input-style" type="email" placeholder="Email">
+            <input formControlName="email" class="input-style" type="email" placeholder="Email" [ngStyle]="{'border': submitted && f.email.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback" >
+                <div *ngIf="f.email.errors?.required">Email is required</div>
+                <div *ngIf="f.email.errors?.email">Email must be a valid email address</div>
+            </div>
         </div>
         <div class="span">
             Phone
         </div>
         <div>
-            <input formControlName="phone" class="input-style" type="text" placeholder="Phone">
+            <input formControlName="phone" class="input-style" type="text" placeholder="Phone" [ngStyle]="{'border': submitted && f.phone.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+            <div *ngIf="submitted && f.phone.invalid" class="invalid-feedback" >
+                <div *ngIf="f.phone.errors?.required">Phone is required</div>
+                <div *ngIf="f.phone.errors?.pattern">Phone must be a valid MA number</div>
+            </div>
         </div>
         <div class="span">
             Role
         </div>
         <div>
-            <select formControlName="roles" class="input-style">
+            <select formControlName="roles" class="input-style" [ngStyle]="{'border': submitted && f.roles.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
                 <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
             </select>
+            <div *ngIf="submitted && f.roles.invalid" class="invalid-feedback" >
+                <div *ngIf="f.roles.errors">Role is required</div>
+            </div>
         </div>
 
         <div class="span">
             Username
         </div>
         <div>
-            <input formControlName="userName" class="input-style" type="text" placeholder="Username">
+            <input formControlName="userName" class="input-style" type="text" placeholder="Username" [ngStyle]="{'border': submitted && f.userName.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+            <div *ngIf="submitted && f.userName.invalid" class="invalid-feedback" >
+                <div *ngIf="f.userName.errors?.required">Username is required</div>
+            </div>
         </div>
         <div class="span">
             New Password
@@ -64,7 +83,5 @@
     </form>
     <div>
         <div style="user-select: none; color: #eaeaea;">.</div>
-        <div *ngIf="error" class="error-feedback"><i class="fas fa-exclamation-triangle"></i> {{error}}</div>
-
       </div>
 </div>
