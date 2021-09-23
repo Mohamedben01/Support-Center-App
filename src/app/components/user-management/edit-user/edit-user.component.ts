@@ -14,8 +14,9 @@ export class EditUserComponent implements OnInit {
   edituserForm!: FormGroup;
   submitted = false;
   loading = false;
-  error!: string;
   roles: any = [{id: 1, name: "Admin"},{id: 2, name: "Technician"}, {id: 3, name: "Guest"}]
+  message : string = '';
+  msgColor! : string;
 
   constructor(
     private userService: UserServiceService,
@@ -30,11 +31,11 @@ export class EditUserComponent implements OnInit {
     this.edituserForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]],
       phone: ['', [Validators.required, Validators.pattern('(\\+212|0)([\\-_/]*)(\\d[\\-_/]*){9}')]],
       userName: ['', Validators.required],
       password: [null],
-      roles: ['']
+      roles: [null, Validators.required]
     });
   }
 
@@ -75,12 +76,21 @@ export class EditUserComponent implements OnInit {
       return;
     }
     this.loading = true;
+    const msgBox = document.querySelector('.message');
     this.userService.saveUser(this.user).subscribe(
-      user => this.user = user,
+      data => { 
+        this.loading = false;
+        this.message = "User is Edited Successfully";
+        this.msgColor = 'Green';
+        msgBox?.classList.add('active');
+        setTimeout(()=>{msgBox?.classList.remove('active')},4500)
+      },
       error => {
         this.loading = false;
-        this.error = error.error.message;
+        this.message = error.error.message;
+        this.msgColor = 'Red';
+        msgBox?.classList.add('active');
+        setTimeout(()=>{msgBox?.classList.remove('active')},4500);
       });
-    this.router.navigate(["/user/management"])
   }
 }

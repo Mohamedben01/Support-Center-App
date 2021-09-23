@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccessGuardGuard } from '../services/guards/access-guard.guard';
+import { AuthGuardGuard } from '../services/guards/auth-guard.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { EditProductComponent } from './product/edit-product/edit-product.component';
@@ -20,7 +21,7 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children:[
-      { path: 'ticket', component: TicketComponent, children: 
+      { path: 'ticket', component: TicketComponent, canActivate: [AuthGuardGuard], children: 
         [
           { path: 'addTicket', component: AddTicketComponent },
           { path: 'exploreTicket', component: ExploreTicketComponent },
@@ -28,15 +29,15 @@ const routes: Routes = [
           { path: '', redirectTo: '/user/ticket/listTicket', pathMatch: 'full' }
         ] 
       },
-      { path: 'product', component: ProductComponent, children:
+      { path: 'product', component: ProductComponent, canActivate: [AuthGuardGuard], children:
        [
          { path: 'listProduct', component: ListProductComponent },
-         { path: 'addProduct', component: AddProductComponent },
-         { path: 'editProduct', component: EditProductComponent },
+         { path: 'addProduct', component: AddProductComponent , canActivate: [AccessGuardGuard]},
+         { path: 'editProduct', component: EditProductComponent , canActivate: [AccessGuardGuard]},
          { path: '', redirectTo: '/user/product/listProduct', pathMatch: 'full' }
        ]
       },
-      { path: 'management', component: UserManagementComponent, children:
+      { path: 'management', component: UserManagementComponent, canActivate: [AuthGuardGuard, AccessGuardGuard], children:
       [
         { path: 'listUsers', component: ListUsersComponent },
         { path: 'addUser', component: AddUserComponent },

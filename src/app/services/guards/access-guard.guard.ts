@@ -16,7 +16,7 @@ export class AccessGuardGuard implements CanActivate {
       if(role == 'Admin'){
         return true;
       }
-      this.router.navigate(["user"]);
+      this.router.navigate(["/user/ticket/listTicket"]);
       return false;  
   }
   

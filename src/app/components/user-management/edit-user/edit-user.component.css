@@ -112,3 +112,28 @@ h2 {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box .message {
+  font-size: 1rem;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(8, 37, 45, .1);
+  border-radius: .5rem;
+  transform: translateX(110%);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.box .message.active {
+  transform: translateX(0);
+  opacity: 1;
+}

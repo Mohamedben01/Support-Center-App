@@ -1,4 +1,9 @@
-<h2>Edit user</h2>
+<div class="box">
+    <h2>Edit user</h2>
+    <div *ngIf="message != null" class="message">
+        <h4 [ngStyle]="{'color':msgColor}">{{message}}</h4>
+    </div>
+</div>
 <div class="content">
     <form *ngIf="user" class="div-style" [formGroup]="edituserForm" (ngSubmit)="saveUser()">
         <div class="span">
@@ -78,7 +83,5 @@
     </form>
     <div>
         <div style="user-select: none; color: #eaeaea;">.</div>
-        <div *ngIf="error" class="error-feedback"><i class="fas fa-exclamation-triangle"></i> {{error}}</div>
-
       </div>
 </div>
