@@ -265,3 +265,29 @@ table {
 .cart .content .buttons .cancelBtn:hover {
   background: #2f7d8d;
 }
+
+/* Message */
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box .message {
+  font-size: 1rem;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: #dbdbdb;
+  border-radius: .5rem;
+  transform: translateX(110%);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.box .message.active {
+  transform: translateX(0);
+  opacity: 1;
+}

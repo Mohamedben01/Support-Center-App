@@ -10,10 +10,15 @@
           </div>
      </div>
     <div>
-        <button routerLink="/user/product/addProduct" *ngIf="user_role === 'Admin'" type="button" class="btn">
+        <div class="box">
+          <button routerLink="/user/product/addProduct" *ngIf="user_role === 'Admin'" type="button" class="btn">
             <i class="fas fa-plus"></i> 
             Add New
-        </button>
+          </button>
+          <div class="message">
+            <h4 >message message</h4>
+          </div>
+        </div>
         <div class="input-div">
            <div class="icon">
               <i class="fas fa-search"></i>

@@ -35,7 +35,7 @@
      </div>
      <ng-template #GuestTickets>
          <div id="table-wrapper">
-            <div style="height: 24rem;" id="table-scroll">
+            <div style="height: 25rem;" id="table-scroll">
                 <table>
                     <thead>
                         <tr>
@@ -62,7 +62,7 @@
                         <td>{{ticket.openDate | date: 'yyyy-MM-dd HH:mm'}}</td>
                         <td>{{ticket.description}}</td>
                         <td>
-                            {{ticket.product.name}}
+                            {{ticket.product?.name}}
                         </td>
                         <td>
                             <button type="button" class="btnico explore"  routerLink="/user/ticket/exploreTicket" [queryParams]="{id : ticket.id}"><i class="fas fa-expand-alt"></i></button>
@@ -218,7 +218,7 @@
                 </div>
                 <ng-template #AllTickets>
                   <div id="table-wrapper">
-                     <div style="height: 24rem;" id="table-scroll">
+                     <div style="height: 26rem;" id="table-scroll">
                         <table>
                             <thead>
                                 <tr>

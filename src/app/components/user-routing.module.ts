@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccessGuardGuard } from '../services/guards/access-guard.guard';
+import { AuthGuardGuard } from '../services/guards/auth-guard.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { EditProductComponent } from './product/edit-product/edit-product.component';
@@ -36,12 +36,13 @@ const routes: Routes = [
          { path: '', redirectTo: '/user/product/listProduct', pathMatch: 'full' }
        ]
       },
-      { path: 'management', component: UserManagementComponent, children:
+      { path: 'management', component: UserManagementComponent,canActivateChild: [AuthGuardGuard],
+       children:
       [
         { path: 'listUsers', component: ListUsersComponent },
         { path: 'addUser', component: AddUserComponent },
         { path: 'editUser/:id', component: EditUserComponent },
-        { path: '', redirectTo: '/user/management/listUsers', pathMatch: 'full' }
+        { path: '',  redirectTo:'/user/management/listUsers', pathMatch: 'full' }
       ]
     },
       { path: '', redirectTo: '/user/ticket', pathMatch: 'full' },

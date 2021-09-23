@@ -36,18 +36,7 @@ export class ListTicketComponent implements OnInit {
     this.allTickets();
   }
 
- ngOnDestroy(){
-    this.guest_tickets = [];
-    this.all_tickets = [];
-    this.tech_assign_tickets = [];
-    this.tech_unassign_tickets = [];
-  }
-
-  ngDoCheck(){
-    this.allAssignTickets();
-    this.allUnAssignTickets();
-  }
-/* ================ Guest User ====================*/
+  /* ================ Guest User ====================*/
   /* Getting tickets of existing guest */
   allGuestTickets(){
     this.loading = true;
