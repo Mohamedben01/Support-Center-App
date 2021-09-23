@@ -17,18 +17,10 @@ export class AuthGuardGuard implements CanActivate {
       if(this.jwtToken !== null){
         return true;
       }
-      localStorage.clear();
-      this.router.navigate(["/login"]);
+      this.authService.logout();
       return false;
   }
-canActivateChild(): boolean{
-    if(this.jwtToken !== null && this.role === 'Admin'){
-      return true;
-    }
-    this.router.navigate(["/login"]);
-      return false;
-}
-  
+
 
 
 

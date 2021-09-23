@@ -13,15 +13,14 @@ export class ListTicketComponent implements OnInit {
 
   user_role: any  = localStorage.getItem('role');
 
-  guest_tickets : any = [];
+  guest_tickets : any;
   ticketId !: number;
 
-  tech_unassign_tickets : any = [];
-  tech_assign_tickets : any = [];
+  tech_unassign_tickets : any ;
+  tech_assign_tickets : any ;
 
-  all_tickets : any = [];
+  all_tickets : any ;
 
-  visible !: boolean ;
   message !: any;
   msgColor !: string;
   loading : boolean = false;

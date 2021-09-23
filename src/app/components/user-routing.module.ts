@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccessGuardGuard } from '../services/guards/access-guard.guard';
 import { AuthGuardGuard } from '../services/guards/auth-guard.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
@@ -31,12 +32,12 @@ const routes: Routes = [
       { path: 'product', component: ProductComponent, children:
        [
          { path: 'listProduct', component: ListProductComponent },
-         { path: 'addProduct', component: AddProductComponent },
-         { path: 'editProduct', component: EditProductComponent },
+         { path: 'addProduct', canActivate: [AccessGuardGuard], component: AddProductComponent },
+         { path: 'editProduct',canActivate: [AccessGuardGuard], component: EditProductComponent },
          { path: '', redirectTo: '/user/product/listProduct', pathMatch: 'full' }
        ]
       },
-      { path: 'management', component: UserManagementComponent,canActivateChild: [AuthGuardGuard],
+      { path: 'management', component: UserManagementComponent,canActivateChild: [AccessGuardGuard],
        children:
       [
         { path: 'listUsers', component: ListUsersComponent },
