@@ -21,7 +21,7 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children:[
-      { path: 'ticket', component: TicketComponent, canActivate: [AuthGuardGuard], children: 
+      { path: 'ticket', component: TicketComponent, children: 
         [
           { path: 'addTicket', component: AddTicketComponent },
           { path: 'exploreTicket', component: ExploreTicketComponent },
@@ -29,7 +29,7 @@ const routes: Routes = [
           { path: '', redirectTo: '/user/ticket/listTicket', pathMatch: 'full' }
         ] 
       },
-      { path: 'product', component: ProductComponent, canActivate: [AuthGuardGuard], children:
+      { path: 'product', component: ProductComponent, children:
        [
          { path: 'listProduct', component: ListProductComponent },
          { path: 'addProduct', component: AddProductComponent , canActivate: [AccessGuardGuard]},
@@ -37,7 +37,7 @@ const routes: Routes = [
          { path: '', redirectTo: '/user/product/listProduct', pathMatch: 'full' }
        ]
       },
-      { path: 'management', component: UserManagementComponent, canActivate: [AuthGuardGuard, AccessGuardGuard], children:
+      { path: 'management', component: UserManagementComponent, canActivate: [AccessGuardGuard], children:
       [
         { path: 'listUsers', component: ListUsersComponent },
         { path: 'addUser', component: AddUserComponent },
