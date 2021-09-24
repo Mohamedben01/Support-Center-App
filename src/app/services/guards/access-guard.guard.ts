@@ -21,13 +21,4 @@ export class AccessGuardGuard implements CanActivate {
    
  }
 
-
- canActivateChild(): boolean{
-    if(this.token !== null && this.role === 'Admin'){
-      return true;
-    }
-    this.authService.logout();
-      return false;
-}
-  
 }

@@ -10,6 +10,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuardGuard } from './services/guards/auth-guard.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { TicketServiceService } from './components/ticket/ticket-service.service';
+import { AccessGuardGuard } from './services/guards/access-guard.guard';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { TicketServiceService } from './components/ticket/ticket-service.service
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AuthService, AuthGuardGuard, TicketServiceService],
+  providers: [AuthService, AuthGuardGuard, TicketServiceService, AccessGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

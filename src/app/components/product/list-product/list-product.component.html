@@ -43,7 +43,7 @@
                </thead>
                <tbody>
                    <tr *ngIf="products.length === 0">
-                      <td>There is no product right now.</td>
+                      <td colspan="4">There is no product right now.</td>
                    </tr>
                    <tr *ngFor="let product of products">
                        <td>{{product.id}}</td>
