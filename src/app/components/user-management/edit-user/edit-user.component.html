@@ -16,18 +16,18 @@
             First Name
         </div>
         <div>
-            <input formControlName="firstName" class="input-style" type="text" placeholder="First Name" [ngStyle]="{'border': submitted && f.firstName.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
-            <div *ngIf="submitted && f.firstName.invalid" class="invalid-feedback" >
-                <div *ngIf="f.firstName.errors?.required">First Name is required</div>
+            <input formControlName="firstname" class="input-style" type="text" placeholder="First Name" [ngStyle]="{'border': submitted && f.firstname.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+            <div *ngIf="submitted && f.firstname.invalid" class="invalid-feedback" >
+                <div *ngIf="f.firstname.errors?.required">First Name is required</div>
             </div>
         </div>
         <div class="span">
             Last Name
         </div>
         <div>
-            <input formControlName="lastName" class="input-style" type="text" placeholder="Last Name" [ngStyle]="{'border': submitted && f.lastName.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
-            <div *ngIf="submitted && f.lastName.invalid" class="invalid-feedback" >
-                <div *ngIf="f.lastName.errors?.required">Last Name is required</div>
+            <input formControlName="lastname" class="input-style" type="text" placeholder="Last Name" [ngStyle]="{'border': submitted && f.lastname.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+            <div *ngIf="submitted && f.lastname.invalid" class="invalid-feedback" >
+                <div *ngIf="f.lastname.errors?.required">Last Name is required</div>
             </div>
         </div>
         <div class="span">
@@ -54,11 +54,11 @@
             Role
         </div>
         <div>
-            <select formControlName="roles" class="input-style" [ngStyle]="{'border': submitted && f.roles.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+            <select formControlName="role" class="input-style" [ngStyle]="{'border': submitted && f.role.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
                 <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
             </select>
-            <div *ngIf="submitted && f.roles.invalid" class="invalid-feedback" >
-                <div *ngIf="f.roles.errors">Role is required</div>
+            <div *ngIf="submitted && f.role.invalid" class="invalid-feedback" >
+                <div *ngIf="f.role.errors">Role is required</div>
             </div>
         </div>
 

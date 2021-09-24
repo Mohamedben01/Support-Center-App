@@ -37,7 +37,7 @@ const routes: Routes = [
          { path: '', redirectTo: '/user/product/listProduct', pathMatch: 'full' }
        ]
       },
-      { path: 'management', component: UserManagementComponent, canActivateChild: [AccessGuardGuard], children:
+      { path: 'management', component: UserManagementComponent, children:
       [
         { path: 'listUsers', component: ListUsersComponent },
         { path: 'addUser', component: AddUserComponent },

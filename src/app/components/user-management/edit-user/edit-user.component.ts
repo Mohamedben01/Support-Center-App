@@ -29,13 +29,13 @@ export class EditUserComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
     this.edituserForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]],
       phone: ['', [Validators.required, Validators.pattern('(\\+212|0)([\\-_/]*)(\\d[\\-_/]*){9}')]],
       userName: ['', Validators.required],
       password: [null],
-      roles: [null, Validators.required]
+      role: [null, Validators.required]
     });
   }
 
@@ -47,12 +47,13 @@ export class EditUserComponent implements OnInit {
       this.userService.getUser(this.userid).subscribe(
       data => {
       this.user = data;
-      this.f.firstName.setValue(this.user.firstName);
-      this.f.lastName.setValue(this.user.lastName);
+      this.f.firstname.setValue(this.user.firstName);
+      this.f.lastname.setValue(this.user.lastName);
       this.f.email.setValue(this.user.email);
       this.f.phone.setValue(this.user.phone);
       this.f.userName.setValue(this.user.userName);
-      this.f.roles.setValue(this.user.roles[0].id)
+      this.f.role.setValue(this.user.role.id)
+      
     },
       error => {
         console.log(error.error.message);
@@ -67,9 +68,11 @@ export class EditUserComponent implements OnInit {
       "id" : this.userid
      };
     var objrole = {
-      "roles" : this.roles.filter((role: any) => role.id == +this.f.roles.value)
+      "role" : Object.assign({}, ...this.roles.filter((role: any) => role.id == +this.f.role.value))
     }
     this.user = Object.assign(objid,this.edituserForm.value, objrole)
+
+    console.log(this.user)
 
     this.submitted = true;
     if (this.edituserForm.invalid) {
