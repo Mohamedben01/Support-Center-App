@@ -29,8 +29,8 @@ export class EditUserComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
     this.edituserForm = this.formBuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]],
       phone: ['', [Validators.required, Validators.pattern('(\\+212|0)([\\-_/]*)(\\d[\\-_/]*){9}')]],
       userName: ['', Validators.required],
@@ -47,8 +47,8 @@ export class EditUserComponent implements OnInit {
       this.userService.getUser(this.userid).subscribe(
       data => {
       this.user = data;
-      this.f.firstname.setValue(this.user.firstName);
-      this.f.lastname.setValue(this.user.lastName);
+      this.f.firstName.setValue(this.user.firstName);
+      this.f.lastName.setValue(this.user.lastName);
       this.f.email.setValue(this.user.email);
       this.f.phone.setValue(this.user.phone);
       this.f.userName.setValue(this.user.userName);

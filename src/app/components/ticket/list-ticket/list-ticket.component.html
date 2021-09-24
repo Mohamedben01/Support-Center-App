@@ -48,7 +48,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngIf="guest_tickets.length === 0">
+                        <tr *ngIf="guest_tickets?.length === 0">
                         <td colspan="6">
                             There is no ticket right now !
                         </td>
@@ -232,7 +232,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                 <tr *ngIf="all_tickets.length === 0">
+                                 <tr *ngIf="all_tickets?.length === 0">
                                     <td colspan="7">There is no Ticket right now</td>
                                  </tr>
                                  <tr *ngFor="let ticket of all_tickets">
