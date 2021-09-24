@@ -7,17 +7,22 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AuthGuardGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService){}
+ 
+  role = localStorage.getItem('role');
+  jwtToken = localStorage.getItem('token');
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):boolean{
-       const jwtToken = localStorage.getItem('token');
-      if(jwtToken !== null){
+      if(this.jwtToken !== null){
         return true;
       }
-
-      this.router.navigate(["/login"]);
+      this.authService.logout();
       return false;
   }
-  
+
+
+
+
 }
+

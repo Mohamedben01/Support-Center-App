@@ -32,17 +32,17 @@ const routes: Routes = [
       { path: 'product', component: ProductComponent, children:
        [
          { path: 'listProduct', component: ListProductComponent },
-         { path: 'addProduct', component: AddProductComponent , canActivate: [AccessGuardGuard]},
-         { path: 'editProduct', component: EditProductComponent , canActivate: [AccessGuardGuard]},
+         { path: 'addProduct', canActivate: [AccessGuardGuard], component: AddProductComponent },
+         { path: 'editProduct', canActivate: [AccessGuardGuard], component: EditProductComponent },
          { path: '', redirectTo: '/user/product/listProduct', pathMatch: 'full' }
        ]
       },
-      { path: 'management', component: UserManagementComponent, canActivate: [AccessGuardGuard], children:
+      { path: 'management', component: UserManagementComponent, canActivateChild: [AccessGuardGuard], children:
       [
         { path: 'listUsers', component: ListUsersComponent },
         { path: 'addUser', component: AddUserComponent },
         { path: 'editUser/:id', component: EditUserComponent },
-        { path: '', redirectTo: '/user/management/listUsers', pathMatch: 'full' }
+        { path: '',  redirectTo:'/user/management/listUsers', pathMatch: 'full' }
       ]
     },
       { path: '', redirectTo: '/user/ticket', pathMatch: 'full' },
