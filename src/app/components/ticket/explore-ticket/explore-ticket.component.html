@@ -4,73 +4,64 @@
             </div>
         <ng-template #Content>
             <div class="content">
-                <form class="newticket-div" >
+                <form [formGroup]="ticketForm" class="newticket-div" >
                     <div class="span">
                         Id Ticket
                     </div>
                     <div>
-                        <div class="input-style">
-                            {{ticketId}}
-                        </div> 
+                        <input formControlName="ticketId" type="text" class="input-style">
                     </div>
                     <div class="span">
                         Status
                     </div>
                     <div>
-                        <select *ngIf="userRole === 'Technician'" [(ngModel)]="ticketStatus" class="input-style">
+                        <select *ngIf="userRole === 'Technician'"[(ngModel)] = "ticketStatus" [ngModelOptions]="{standalone: true}" 
+                                       name="ticketStatus" class="input-style">
                             <option disabled selected>Select Status</option>
                             <option value="open" >Open</option>
                             <option value="close" >Close</option>
                         </select>
-                        <div type="text" class="input-style">
-                            {{ticket.status}}
-                        </div>
+                        <input formControlName="status" type="text" class="input-style">
                     </div>
                     <div class="span">
                         Open date
                     </div>
                     <div>
-                        <div class="input-style">
-                            {{ticket.openDate | date: 'yyyy:MM:dd HH:mm'}}
-                        </div> 
+                        <input formControlName="openDate" type="text" class="input-style"> 
                     </div>
                     <div class="span">
                         Product Name
                     </div>
                     <div>
-                        <div class="input-style">
-                            {{ticket.productName}}
-                        </div> 
+                        <input formControlName="productName" type="text" class="input-style">
                     </div>
                     <div class="span">
                         Ticket Description
                     </div>
                     <div>
-                        <div class="textarea-style">
-                            {{ticket.description}}
-                        </div> 
+                        <textarea formControlName="description" type="text" class="textarea-style"></textarea>
                     </div>
                     <div class="span">
                         Chat
                     </div>
                     <div class="chat-div">
-                        <div disabled rows="10" class="boxChat" type="text" >
+                        <div  rows="10" class="boxChat" type="text" >
                             <ul>
-                                <li style="width:100%; height:100%; display: flex; justify-content: center; align-items: center;" 
-                                    *ngIf="ticket.messages.length === 0">
-                                    <span>Empty Chat</span>
+                                <li style="width:100%;display: flex;justify-content: center;align-items: center;" 
+                                        *ngIf="messages.length === 0">
+                                    <span style="font-size: 1.2rem; color: #111;">Empty Chat</span>
                                 </li>
-                                <li *ngFor="let message of ticket.messages">
+                                <li *ngFor="let message of messages">
                                     <h5>{{message.sender.userName}}</h5>
                                     <p>{{message.content}}</p>
                                     <span>{{message.createdOn | date: 'yyyy-MM-dd HH:mm'}}</span>
                                 </li>
                             </ul>
                         </div>
-                        <input name="message" ngModel #message="ngModel" (ngModelChange)="getMessage(message.value)" class="inputchat-style" type="text" placeholder="type a message here">
-                        <span (click)="sendMessage()" class="btnsent">
+                        <input [disabled]="isDisable" name="messageText" [(ngModel)] = "messageText" [ngModelOptions]="{standalone: true}" class="inputchat-style" type="text" placeholder="type a message here">
+                        <button [disabled]="isDisable" (click)="sendMessage()" class="btnsent">
                             <a>Sent <i class="fas fa-paper-plane"></i></a>
-                        </span>
+                        </button>
                     </div>
                     <input type="button" *ngIf="userRole === 'Technician'" (click)="changeTicketStatus()" class="btn2 btnsave" value="Change">
                     <input type="button" class="btn2 btncancel" routerLink="/user/ticket/listTicket" value="Close">

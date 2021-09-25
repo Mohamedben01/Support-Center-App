@@ -13,13 +13,13 @@ export class ListTicketComponent implements OnInit {
 
   user_role: any  = localStorage.getItem('role');
 
-  guest_tickets : any;
+  guest_tickets : any = [];
   ticketId !: number;
 
-  tech_unassign_tickets : any ;
-  tech_assign_tickets : any ;
+  tech_unassign_tickets : any = [] ;
+  tech_assign_tickets : any = [] ;
 
-  all_tickets : any ;
+  all_tickets : any = [] ;
 
   message !: any;
   msgColor !: string;
@@ -69,6 +69,9 @@ export class ListTicketComponent implements OnInit {
       for(const ticket of tickets){
         let status = (ticket.status?'open':'close');
         if(status.indexOf(key.toLowerCase()) !== -1 || 
+           ticket.id.toString().indexOf(key.toString()) !== -1||
+           ticket.openDate.toString().indexOf(key.toString()) !== -1||
+           ticket.product.name.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
            ticket.description.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
            ticket.guest.userName.toLowerCase().indexOf(key.toLowerCase()) !== -1){
              result.push(ticket);
@@ -117,13 +120,14 @@ export class ListTicketComponent implements OnInit {
       const msgBox = document.querySelector('#message1');
       this.ticketService.deleteTicket(this.ticketId).subscribe(
         response =>{
-          this.cancelDeleteCart();
-          this.allGuestTickets();
-          this.message = response;
+          this.message = response.toString();
           this.msgColor = 'Green';
           msgBox?.classList.add('active'); 
           setTimeout(()=>{msgBox?.classList.remove('active')},5000);
           this.cancelDeleteCart();
+          this.allGuestTickets();
+          this.allTickets();
+          this.allAssignTickets();
         },
         error =>{
           this.cancelDeleteCart();

@@ -108,7 +108,7 @@
                          </tr>     
                      </thead>
                      <tbody>
-                         <tr *ngIf="tech_unassign_tickets.length === 0">
+                         <tr *ngIf="tech_unassign_tickets?.length === 0">
                         <td colspan="7">
                             There is no tickets unassign right now.
                         </td>
@@ -165,7 +165,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr *ngIf="tech_assign_tickets.length === 0">
+                        <tr *ngIf="tech_assign_tickets?.length === 0">
                                <td colspan="7">
                                      There is no ticket assigned for you right now.
                                 </td>
@@ -180,8 +180,7 @@
                         <td>{{ticket.description}}</td>
                         <td>{{ticket.guest.userName}}</td>
                         <td>
-                            {{ticket.product.name}}
-                            
+                            {{ticket.product.name}}  
                         </td>
                         <td>
                             <button type="button" class="btnico edit"  routerLink="/user/ticket/exploreTicket" [queryParams]="{id : ticket.id}"><i class="fas fa-pen"></i></button>

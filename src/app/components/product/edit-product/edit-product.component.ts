@@ -12,7 +12,6 @@ import { ProductServiceService } from '../product-service.service';
 export class EditProductComponent implements OnInit {
 
   productId !: number ;
-  product : Product = new Product();
   productForm !: FormGroup;
 
   message : string = '';

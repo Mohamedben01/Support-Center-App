@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -17,8 +17,8 @@ export class TicketServiceService {
   /* ==========================Guest Methods============================ */
 
    getGuestTickets(){
-    const headers = { 'Authorization': this.token};
-    return this.http.get<any>(`${environment.baseUrl}/api/ticket/all`, {headers});
+  
+    return this.http.get<any>(`${environment.baseUrl}/api/ticket/all`, {params: new HttpParams().set('authorization', this.token)});
   }
 
   addTicket(ticket : any): Observable<any>{    
@@ -28,12 +28,10 @@ export class TicketServiceService {
   }
 
   getTicketById(id: number){
-    const headers = { 'Authorization': this.token};
-    return this.http.get<any>(`${environment.baseUrl}/api/ticket/get`,
-                               {
-                                 headers,
-                                 params: new HttpParams().set('ticketId', id),
-                               }, 
+    const params = new HttpParams()
+                          .set("authorization", this.token)
+                          .set("ticketId", id)
+    return this.http.get<any>(`${environment.baseUrl}/api/ticket/get`,{'params': params}, 
                               ).pipe(
                                 catchError((err)=>{
                                   console.error(err);
@@ -43,11 +41,14 @@ export class TicketServiceService {
   }
 
   deleteTicket(id: number){
-    const headers = { 'Authorization': this.token};
-    return this.http.delete(`${environment.baseUrl}/api/ticket/delete`,{
-                            headers,
-                            params: new HttpParams().set('ticketId', id),
-                        },
+    const params = new HttpParams().set('authorization', this.token)
+                                   .set('ticketId', id)
+    return this.http.delete(`${environment.baseUrl}/api/ticket/delete`,{'params': params},
+                    ).pipe(
+                      catchError((err)=>{
+                        console.log(err);
+                        throw err;
+                      })
                     );
   }
 
@@ -75,16 +76,20 @@ export class TicketServiceService {
 
    getAssignTickets(){
      const headers = {'Authorization': this.token};
-     return this.http.get<any>(`${environment.baseUrl}/api/ticket/assignTickets`, {headers});
+     return this.http.get<any>(`${environment.baseUrl}/api/ticket/assignTickets`, {headers})
+                                         .pipe(
+                                           catchError((err)=>{
+                                             console.error(err);
+                                             throw err;
+                                           })
+                                         );
    }
 
    assignOrUnassignTicketToTech(id: number){
-     const headers = { 'Authorization': this.token};
-     return this.http.get(`${environment.baseUrl}/api/ticket/assign`,{ 
-                               headers,
-                               params: new HttpParams().set("ticketId", id)
-                             }
-                          ).pipe(
+     //const headers = new HttpHeaders({'Authorization': this.token});
+     const params = new HttpParams().set('token', this.token)
+     return this.http.get<any>(`${environment.baseUrl}/api/ticket/assign/${id}`, {'params': params})
+                          .pipe(
                             catchError((err)=>{
                               console.error(err);
                               throw err;
