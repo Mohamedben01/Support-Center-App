@@ -120,7 +120,7 @@ export class ListTicketComponent implements OnInit {
       const msgBox = document.querySelector('#message1');
       this.ticketService.deleteTicket(this.ticketId).subscribe(
         response =>{
-          this.message = response.toString();
+          this.message = "Ticket Deleted Successfully.";
           this.msgColor = 'Green';
           msgBox?.classList.add('active'); 
           setTimeout(()=>{msgBox?.classList.remove('active')},5000);
@@ -131,7 +131,7 @@ export class ListTicketComponent implements OnInit {
         },
         error =>{
           this.cancelDeleteCart();
-          this.message = error.message;
+          this.message = "Please Try Again. Operation Failed.";
           this.msgColor = 'Red';
           msgBox?.classList.add('active'); 
           setTimeout(()=>{msgBox?.classList.remove('active')},5000);

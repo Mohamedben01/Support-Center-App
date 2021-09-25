@@ -19,7 +19,7 @@ export class ExploreTicketComponent implements OnInit {
   messageText !: string;
   ticketStatus !: string;
   loading : boolean = false;
-  
+ 
   constructor(private route: ActivatedRoute,
               private ticketService: TicketServiceService) {
                 this.ticketForm = new FormBuilder().group({
@@ -79,14 +79,15 @@ export class ExploreTicketComponent implements OnInit {
 
   /* Sending Message By Current User */
   sendMessage(){
-    this.ticketService.sendMsg(this.messageText, this.ticketId).subscribe(res=>{
+      this.ticketService.sendMsg(this.messageText, this.ticketId).subscribe(res=>{
       this.messageText = '';
       this.getTicket();
-    },
-    error=>{
+     },
+     error=>{
       console.log("SomeThing went Wrong.")
-    }
-    )
+      }
+     )
+    
   }
 
 

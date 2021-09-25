@@ -1,10 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators,FormBuilder } from '@angular/forms';
 import { TicketServiceService } from '../ticket-service.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ProductServiceService } from '../../product/product-service.service';
-import { Product } from 'src/app/models/Products';
-import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-add-ticket',
@@ -28,7 +26,7 @@ export class AddTicketComponent implements OnInit {
       openDate : ['', Validators.required],
       productId : ['', Validators.required],
       description: ['', Validators.required],
-      message: ['']
+      message: [null]
     })
 
     this.productService.getAllProducts().subscribe(res=>{
