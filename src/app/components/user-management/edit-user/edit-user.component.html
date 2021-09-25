@@ -54,11 +54,11 @@
             Role
         </div>
         <div>
-            <select formControlName="roles" class="input-style" [ngStyle]="{'border': submitted && f.roles.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
+            <select formControlName="role" class="input-style" [ngStyle]="{'border': submitted && f.role.errors ? '0.5px solid red' : '0.5px solid #afc9cd'}">
                 <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
             </select>
-            <div *ngIf="submitted && f.roles.invalid" class="invalid-feedback" >
-                <div *ngIf="f.roles.errors">Role is required</div>
+            <div *ngIf="submitted && f.role.invalid" class="invalid-feedback" >
+                <div *ngIf="f.role.errors">Role is required</div>
             </div>
         </div>
 

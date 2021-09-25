@@ -37,12 +37,11 @@ const routes: Routes = [
          { path: '', redirectTo: '/user/product/listProduct', pathMatch: 'full' }
        ]
       },
-      { path: 'management', component: UserManagementComponent,canActivate: [AccessGuardGuard],
-       children:
+      { path: 'management', component: UserManagementComponent, children:
       [
-        { path: 'listUsers', component: ListUsersComponent },
-        { path: 'addUser', component: AddUserComponent },
-        { path: 'editUser/:id', component: EditUserComponent },
+        { path: 'listUsers', canActivate: [AccessGuardGuard], component: ListUsersComponent },
+        { path: 'addUser', canActivate: [AccessGuardGuard], component: AddUserComponent },
+        { path: 'editUser/:id', canActivate: [AccessGuardGuard], component: EditUserComponent },
         { path: '',  redirectTo:'/user/management/listUsers', pathMatch: 'full' }
       ]
     },

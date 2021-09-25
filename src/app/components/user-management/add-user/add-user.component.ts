@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { UserServiceService } from '../user-service.service';
 
 @Component({
@@ -14,8 +13,7 @@ export class AddUserComponent implements OnInit {
   error!: string;
   loading = false;
   submitted = false;
-  roles: any = [{id: 1, name: "Admin"},{id: 2, name: "Technician"}, {id: 3, name: "Guest"}]
-  user!: any;
+  roles: any = ["Admin", "Technician", "Guest"]
   message : string = '';
   msgColor! : string;
 
@@ -26,13 +24,13 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]],
       phone: ['', [Validators.required, Validators.pattern('(\\+212|0)([\\-_/]*)(\\d[\\-_/]*){9}')]],
-      userName: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      roles: [null, Validators.required]
+      role: [null, Validators.required]
   })
   }
 
@@ -41,19 +39,14 @@ export class AddUserComponent implements OnInit {
   onAddUser(){
 
     this.submitted = true;
-
-    var objrole = {
-      "roles" : this.roles.filter((role: any) => role.id == +this.f.roles.value)
-    }
-    this.user= Object.assign(this.userForm.value, objrole)
-    console.log(this.user)
+    console.log(this.userForm.value)
     if (this.userForm.invalid) {
       return;
     }
 
     this.loading = true;
     const msgBox = document.querySelector('.message');
-    this.userService.addUser(this.user)
+    this.userService.addUser(this.userForm.value)
     .subscribe(
         data => {
         this.loading = false;
