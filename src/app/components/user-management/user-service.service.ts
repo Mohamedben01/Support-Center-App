@@ -8,22 +8,28 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserServiceService {
-  
+  token : any = localStorage.getItem("token");
+
   constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<User> {
-    return this.http.get<User>(`${environment.baseUrl}/api/management/all`);
+    const headers = { 'Authorization': this.token};
+    return this.http.get<User>(`${environment.baseUrl}/api/management/all`, {headers});
   }
   getUser(id: any): Observable<User> {
-    return this.http.get<User>(`${environment.baseUrl}/api/management/edit/`+ id);
+    const headers = { 'Authorization': this.token};
+    return this.http.get<User>(`${environment.baseUrl}/api/management/edit/`+ id, {headers});
   }
   saveUser(user: any) {
-    return this.http.put<any>(`${environment.baseUrl}/api/management/save`, user);
+    const headers = { 'Authorization': this.token};
+    return this.http.put<any>(`${environment.baseUrl}/api/management/save`, user, {headers});
   }
   deleteUser(id: any) {
-    return this.http.delete<any>(`${environment.baseUrl}/api/management/delete/`+ id);
+    const headers = { 'Authorization': this.token};
+    return this.http.delete<any>(`${environment.baseUrl}/api/management/delete/`+ id, {headers});
   }
   addUser(user: any){
-    return this.http.post<any>(`${environment.baseUrl}/api/management/adduser`, user);
+    const headers = { 'Authorization': this.token};
+    return this.http.post<any>(`${environment.baseUrl}/api/management/adduser`, user, {headers});
   }
 }
