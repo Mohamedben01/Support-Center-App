@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/models/Products';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProductServiceService } from '../product-service.service';
 
 @Component({
@@ -13,21 +14,22 @@ export class ListProductComponent implements OnInit {
   products : Product[] = [];
   productId !: number;
   loading : boolean = true;
-  
-  constructor(private productService: ProductServiceService ) { }
+  message : string = '';
 
-  ngOnInit(): void {
+  constructor(private productService: ProductServiceService, private authService: AuthService ) { }
+
+  ngOnInit(){
     this.user_role;
     this.allProducts();
   }
 
+ 
   /* Show All Products */
   allProducts(){
     this.loading = true;
     this.productService.getAllProducts().subscribe(
       data =>{
         this.loading = false;
-        console.log(data);
         this.products = data;
       },
       error =>{
@@ -38,6 +40,9 @@ export class ListProductComponent implements OnInit {
 
    /*show delete ticket cart*/
     deleteProduct(id: number){
+      this.productService.getProductById(id).subscribe(
+        resp => {this.message = resp.status?'Some tickets has this product, are you sure you want to delete it?':'Are you sure you want to delete this product?'}
+        )
       const deleteBtn = document.querySelector('.content');
       const cart = document.querySelector('.cart');
       cart?.classList.add('show');
@@ -56,7 +61,6 @@ export class ListProductComponent implements OnInit {
   deleteProductById(){
     this.productService.deleteProductById(this.productId).subscribe(
       response =>{
-        console.log(response);
         this.cancelDeleteCart();
         this.allProducts();
       },

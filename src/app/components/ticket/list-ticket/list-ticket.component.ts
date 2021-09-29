@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { TicketServiceService } from '../ticket-service.service';
 
 
@@ -9,11 +10,12 @@ import { TicketServiceService } from '../ticket-service.service';
   templateUrl: './list-ticket.component.html',
   styleUrls: ['./list-ticket.component.css']
 })
-export class ListTicketComponent implements OnInit {
+export class ListTicketComponent implements OnInit{
 
   user_role: any  = localStorage.getItem('role');
+  
 
-  guest_tickets : any = [];
+  guest_tickets : any[] = [];
   ticketId !: number;
 
   tech_unassign_tickets : any = [] ;
@@ -25,9 +27,9 @@ export class ListTicketComponent implements OnInit {
   msgColor !: string;
   loading : boolean = false;
 
-  constructor(private ticketService: TicketServiceService) { }
+  constructor(private ticketService: TicketServiceService, private authService : AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.user_role;
     this.allGuestTickets();
     this.allUnAssignTickets();
@@ -47,99 +49,6 @@ export class ListTicketComponent implements OnInit {
       error =>{
         console.log("There is no ticket  here !!!");
       })}
-
-    /*filtering table with status*/
-    searchTicket(key: string):void{
-      const result = [];
-      let tickets = [];
-      switch(this.user_role){
-        case 'Admin':{
-          tickets = this.all_tickets;
-          break;
-        }
-        case 'Technician':{
-          tickets = this.tech_unassign_tickets;
-          break;
-        }
-        default: {
-          tickets = this.guest_tickets;
-          break;
-        }
-      }
-      for(const ticket of tickets){
-        let status = (ticket.status?'open':'close');
-        if(status.indexOf(key.toLowerCase()) !== -1 || 
-           ticket.id.toString().indexOf(key.toString()) !== -1||
-           ticket.openDate.toString().indexOf(key.toString()) !== -1||
-           ticket.product.name.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-           ticket.description.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-           ticket.guest.userName.toLowerCase().indexOf(key.toLowerCase()) !== -1){
-             result.push(ticket);
-        }
-      }
-      switch(this.user_role){
-        case 'Admin':{
-          this.all_tickets = result;
-          break;
-        }
-        case 'Technician':{
-          this.tech_unassign_tickets = result;
-          break;
-        }
-        default: {
-          this.guest_tickets = result;
-          break;
-        }
-      }
-      if(result.length === 0 || !key){
-        this.allUnAssignTickets();
-        this.allGuestTickets();
-        this.allTickets();
-      }
-    }
-
-    /*show delete ticket cart*/
-    deleteTicket(id: number){
-      const deleteBtn = document.querySelector('.content');
-      const cart = document.querySelector('.cart');
-      cart?.classList.add('show');
-      deleteBtn?.classList.add('active');
-      this.ticketId = id;
-    }
-
-    /*Cancel Delete Cart */
-    cancelDeleteCart(){
-      const deleteBtn = document.querySelector('.content');
-      const cart = document.querySelector('.cart');
-      cart?.classList.remove('show');
-      deleteBtn?.classList.remove('active');
-    }
-
-    /* Delete Ticket Cart By Id */
-    deleteTicketById(){
-      const msgBox = document.querySelector('#message1');
-      this.ticketService.deleteTicket(this.ticketId).subscribe(
-        response =>{
-          this.message = "Ticket Deleted Successfully.";
-          this.msgColor = 'Green';
-          msgBox?.classList.add('active'); 
-          setTimeout(()=>{msgBox?.classList.remove('active')},5000);
-          this.cancelDeleteCart();
-          this.allGuestTickets();
-          this.allTickets();
-          this.allAssignTickets();
-        },
-        error =>{
-          this.cancelDeleteCart();
-          this.message = "Please Try Again. Operation Failed.";
-          this.msgColor = 'Red';
-          msgBox?.classList.add('active'); 
-          setTimeout(()=>{msgBox?.classList.remove('active')},5000);
-          this.cancelDeleteCart();
-        }
-      )
-    }
-
 
     /*=================== Technician User====================*/
     
@@ -212,5 +121,101 @@ export class ListTicketComponent implements OnInit {
   } 
 
 
- 
+  /* =============Common Methods============== */
+  
+  
+    /*filtering table with status*/
+    searchTicket(key: string):void{
+      const result = [];
+      let tickets = [];
+      switch(this.user_role){
+        case 'Admin':{
+          tickets = this.all_tickets;
+          break;
+        }
+        case 'Technician':{
+          tickets = this.tech_unassign_tickets;
+          break;
+        }
+        default: {
+          tickets = this.guest_tickets;
+          break;
+        }
+      }
+      for(const ticket of tickets){
+        let status = (ticket.status?'open':'close');
+        if(status.indexOf(key.toLowerCase()) !== -1 || 
+           ticket.id.toString().indexOf(key.toString()) !== -1||
+           ticket.openDate.toString().indexOf(key.toString()) !== -1||
+           ticket.product?.name.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+           ticket.description.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+           ticket.guest.userName.toLowerCase().indexOf(key.toLowerCase()) !== -1){
+             result.push(ticket);
+        }
+      }
+      switch(this.user_role){
+        case 'Admin':{
+          this.all_tickets = result;
+          break;
+        }
+        case 'Technician':{
+          this.tech_unassign_tickets = result;
+          break;
+        }
+        default: {
+          this.guest_tickets = result;
+          break;
+        }
+      }
+      if(result.length === 0 || !key){
+        this.allUnAssignTickets();
+        this.allGuestTickets();
+        this.allTickets();
+  
+      }
+    }
+
+    /*show delete ticket cart*/
+    deleteTicket(id: number){
+      const deleteBtn = document.querySelector('.content');
+      const cart = document.querySelector('.cart');
+      cart?.classList.add('show');
+      deleteBtn?.classList.add('active');
+      this.ticketId = id;
+    }
+
+    /*Cancel Delete Cart */
+    cancelDeleteCart(){
+      const deleteBtn = document.querySelector('.content');
+      const cart = document.querySelector('.cart');
+      cart?.classList.remove('show');
+      deleteBtn?.classList.remove('active');
+    }
+
+    /* Delete Ticket Cart By Id */
+    deleteTicketById(){
+      const msgBox = document.querySelector('#message1');
+      this.ticketService.deleteTicket(this.ticketId).subscribe(
+        response =>{
+          this.message = "Ticket Deleted Successfully.";
+          this.msgColor = 'Green';
+          msgBox?.classList.add('active'); 
+          setTimeout(()=>{msgBox?.classList.remove('active')},5000);
+          this.cancelDeleteCart();
+          this.allGuestTickets();
+          this.allTickets();
+          this.allAssignTickets();
+        },
+        error =>{
+          this.cancelDeleteCart();
+          this.message = "Please Try Again. Operation Failed.";
+          this.msgColor = 'Red';
+          msgBox?.classList.add('active'); 
+          setTimeout(()=>{msgBox?.classList.remove('active')},5000);
+          this.cancelDeleteCart();
+        }
+      )
+    }
+
+
 }
