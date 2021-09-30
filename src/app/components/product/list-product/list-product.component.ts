@@ -31,9 +31,6 @@ export class ListProductComponent implements OnInit {
       data =>{
         this.loading = false;
         this.products = data;
-      },
-      error =>{
-        console.log("Something went wrong!!! no products");
       }
     )
   }
@@ -65,7 +62,6 @@ export class ListProductComponent implements OnInit {
         this.allProducts();
       },
       error =>{
-        console.log("SomeThing Went Wrong.");
         this.cancelDeleteCart();
       }
     )

@@ -47,7 +47,7 @@ export class ListTicketComponent implements OnInit{
         this.guest_tickets = data;
       }, 
       error =>{
-        console.log("There is no ticket  here !!!");
+        this.loading = false;
       })}
 
     /*=================== Technician User====================*/
@@ -62,7 +62,6 @@ export class ListTicketComponent implements OnInit{
         },
         error =>{
           this.loading = false;
-          console.log("Error!!! Unassign Tickets");
         }
       )
     }
@@ -77,7 +76,6 @@ export class ListTicketComponent implements OnInit{
         },
         error =>{
           this.loading = false;
-          console.log("Error!!! Assign Tickets");
         }
       )
     }
@@ -115,7 +113,6 @@ export class ListTicketComponent implements OnInit{
       },
       error =>{
         this.loading = false;
-        console.log("No Tickets");
       }
     )
   } 

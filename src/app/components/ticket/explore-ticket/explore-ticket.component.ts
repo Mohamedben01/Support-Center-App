@@ -48,7 +48,6 @@ export class ExploreTicketComponent implements OnInit {
     this.ticketService.getTicketById(this.ticketId).subscribe(
       data =>{
         this.loading = false;
-        console.log("=======>",data);
         this.ticketForm.controls['ticketId'].setValue(data.id);
         this.ticketForm.controls['status'].setValue(data.status);
         this.ticketForm.controls['openDate'].setValue(data.openDate);
@@ -56,11 +55,9 @@ export class ExploreTicketComponent implements OnInit {
         this.ticketForm.controls['productName'].setValue(data.productName !== 'Was deleted'?data.productName:'Was deleted');  
         this.messages = data.messages;  
         this.isDisable = data.status === 'Close'?true:false;
-        //console.log(`=====> ${this.isDisable}`);
       },
       error =>{
         this.loading = false;
-        console.log(error.error.message);
       }
     )
   }
@@ -73,7 +70,7 @@ export class ExploreTicketComponent implements OnInit {
         this.getTicket();
       },
       error =>{
-        console.log("Operation Failed Status Doesn't Change It.")
+        this.getTicket();
       }
     )
   }
@@ -85,7 +82,7 @@ export class ExploreTicketComponent implements OnInit {
       this.getTicket();
      },
      error=>{
-      console.log("SomeThing went Wrong.")
+        this.getTicket();
       }
      )
     

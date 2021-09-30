@@ -53,7 +53,6 @@ export class EditProductComponent implements OnInit {
       },
       error =>{
         this.loading =false;
-        console.log(`There is no product with this email ${this.productId}`);
       }
     )
   }
