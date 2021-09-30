@@ -41,7 +41,7 @@ export class ListProductComponent implements OnInit {
    /*show delete ticket cart*/
     deleteProduct(id: number){
       this.productService.getProductById(id).subscribe(
-        resp => {this.message = resp.status?'Some tickets has this product, are you sure you want to delete it?':'Are you sure you want to delete this product?'}
+        resp => {this.message = resp.status?'Some tickets have this product, are you sure you want to delete it?':'Are you sure you want to delete this product?'}
         )
       const deleteBtn = document.querySelector('.content');
       const cart = document.querySelector('.cart');
