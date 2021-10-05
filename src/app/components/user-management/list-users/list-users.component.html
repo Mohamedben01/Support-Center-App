@@ -9,11 +9,18 @@
         </div>
       </div>
     </div>
-  <button routerLink="/user/management/addUser" type="button" class="btn">
+  <div class="box">
+    <button routerLink="/user/management/addUser" type="button" class="btn">
       <i class="fas fa-plus"></i> 
       Add New
-  </button>
+    </button>
+    <div *ngIf="message1 != null" class="message" id="message1">
+        <h4 [ngStyle]="{'color':msgColor}">{{message1}}</h4>
+    </div>
+</div>
 <div>
+<div id="table-wrapper">
+<div id="table-scroll">
 <table>
   <thead>
       <tr>
@@ -46,5 +53,7 @@
       </tr>
   </tbody>
 </table> 
+</div>
+</div>
 </div>
 </div>

@@ -9,8 +9,11 @@ import { UserServiceService } from '../user-service.service';
 })
 export class ListUsersComponent implements OnInit {
   users: any = [];
-  message !: any;
+  message !: string ;
+  message1 : string = ''
+  msgColor : string = '';
   userId !: number;
+
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserServiceService) { }
 
@@ -19,14 +22,7 @@ export class ListUsersComponent implements OnInit {
   }
 
   allUsers(){
-    this.userService.getAllUsers().subscribe(
-      data => {
-        this.users = data;
-      }, 
-      error =>{
-        console.log(error.error.message);
-      }
-    )
+    this.userService.getAllUsers().subscribe( data => { this.users = data })
   }
   deleteUser(id: any){
     this.userService.getUser(id).subscribe(
@@ -40,13 +36,21 @@ export class ListUsersComponent implements OnInit {
   }
 
   confirmDelete(){
-    this.userService.deleteUser(this.userId).subscribe( 
+    const msgBox = document.querySelector('#message1');
+    this.userService.deleteUser(this.userId).subscribe(      
       response =>{
         this.cancelDelete();
         this.allUsers();
+        this.message1 = "User Deleted Successfully.";
+        this.msgColor = 'Green';
+        msgBox?.classList.add('active'); 
+        setTimeout(()=>{msgBox?.classList.remove('active')},5000);
       },
       error =>{
-        console.log(error.error.message);
+        this.message1 = "Operation Failed, please try again.";
+        this.msgColor = 'Red';
+        msgBox?.classList.add('active'); 
+        setTimeout(()=>{msgBox?.classList.remove('active')},5000);
         this.cancelDelete();
       }
     )

@@ -170,3 +170,43 @@
     background: #2f7d8d;
   }
   
+
+  #table-wrapper {
+    position: relative;
+  }
+
+  #table-scroll {
+    height: 18rem;
+    overflow: auto;
+    width: 100%;
+  }
+
+  #table-wrapper table {
+    width: 100%;
+
+  }
+/* For message Response */
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box .message {
+  font-size: 1rem;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: #dbdbdb;
+  border-radius: .5rem;
+  transform: translateX(110%);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.box .message.active {
+  transform: translateX(0);
+  opacity: 1;
+}
